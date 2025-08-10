@@ -1,0 +1,39 @@
+// Database schema generated from C# Models
+// Project: dotnet-smk-telkom-2025
+
+Table users {
+  id uuid [primary key]
+  name varchar [not null]
+  email varchar [null]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+  deleted_at timestamp [null]
+}
+
+Table posts {
+  id uuid [primary key]
+  title varchar [not null]
+  content text [not null]
+  author_user_id uuid [not null, ref: > users.id]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+  deleted_at timestamp [null]
+}
+
+Table post_comments {
+  id uuid [primary key]
+  content text [not null]
+  author_user_id uuid [not null, ref: > users.id]
+  post_id uuid [not null, ref: > posts.id]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+  deleted_at timestamp [null]
+
+}
+
+// Table Groups
+TableGroup "Core Tables" {
+  users
+  posts
+  post_comments
+}
