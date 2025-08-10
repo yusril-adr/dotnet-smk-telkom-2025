@@ -1,9 +1,10 @@
 using dotnet_smk_telkom_2025.Controllers;
+using dotnet_smk_telkom_2025.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<TestRepository>();
+builder.Services.AddSingleton<UserQueryRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -7,7 +7,7 @@ public class UserUpdateParameter : UserCreateParameter
 {
   [StringLength(100, MinimumLength = 3)]
   public new string Name { get; set; }
-  public static User ToModel(User user, UserCreateParameter parameter)
+  public static User ToModel(User user, UserUpdateParameter parameter)
   {
     user.Name = parameter.Name ?? user.Name;
     user.Email = parameter.Email ?? user.Email;

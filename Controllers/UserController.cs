@@ -1,6 +1,7 @@
 using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Dtos.Results;
 using dotnet_smk_telkom_2025.Models;
+using dotnet_smk_telkom_2025.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_smk_telkom_2025.Controllers;
@@ -10,27 +11,28 @@ namespace dotnet_smk_telkom_2025.Controllers;
 public class UserController : ControllerBase
 {
   private readonly ILogger<UserController> _logger;
-
-  private List<User> UserDatas = new();
+  private readonly List<User> _userDatas;
 
   public UserController(
-    ILogger<UserController> logger
+    ILogger<UserController> logger,
+    UserQueryRepository userQueryRepository
   )
   {
     _logger = logger;
+    _userDatas = userQueryRepository.GetDatas();
   }
 
   [HttpGet]
   public IActionResult GetAll()
   {
-    var results = UserResult.MapModels(UserDatas);
+    var results = UserResult.MapModels(_userDatas);
     return Ok(results);
   }
 
   [HttpGet("{id}")]
   public IActionResult FindOneById(Guid id)
   {
-    var user = UserDatas.FirstOrDefault(u => u.Id == id);
+    var user = _userDatas.FirstOrDefault(u => u.Id == id);
     if (user == null)
     {
       return NotFound("User not found");
@@ -48,9 +50,10 @@ public class UserController : ControllerBase
     user.Id = Guid.NewGuid();
     user.CreatedAt = DateTime.Now;
     user.UpdatedAt = DateTime.Now;
-    UserDatas.Add(user);
+    _userDatas.Add(user);
 
-    return Ok(user);
+    var result = new UserResult(user);
+    return Ok(result);
   }
 
   [HttpPatch("{id}")]
@@ -59,20 +62,18 @@ public class UserController : ControllerBase
     [FromBody] UserUpdateParameter parameter
   )
   {
-    var user = UserDatas.FirstOrDefault(u => u.Id == id);
+    var user = _userDatas.FirstOrDefault(u => u.Id == id);
     if (user == null)
     {
       return NotFound("User not found");
     }
+    user = UserUpdateParameter.ToModel(user, parameter);
 
-    UserUpdateParameter.ToModel(user, parameter);
-    user.UpdatedAt = DateTime.Now;
-
-    var index = UserDatas.FindIndex(u => u.Id == user.Id);
+    var index = _userDatas.FindIndex(u => u.Id == user.Id);
     if (index >= 0)
     {
       user.UpdatedAt = DateTime.Now;
-      UserDatas[index] = user;
+      _userDatas[index] = user;
     }
 
     var result = new UserResult(user);
@@ -84,12 +85,12 @@ public class UserController : ControllerBase
     Guid id
   )
   {
-    var user = UserDatas.FirstOrDefault(u => u.Id == id);
+    var user = _userDatas.FirstOrDefault(u => u.Id == id);
     if (user == null)
     {
       return NotFound("User not found");
     }
-    UserDatas.Remove(user);
+    _userDatas.Remove(user);
     return Ok();
   }
 }
