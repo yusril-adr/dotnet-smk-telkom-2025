@@ -1,4 +1,5 @@
 using dotnet_smk_telkom_2025.Infrastructure.Databases;
+using dotnet_smk_telkom_2025.Repositories;
 using dotnet_smk_telkom_2025.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<InMemoryDbContext>();
 /* ------------------------------ Repositories ------------------------------ */
+builder.Services.AddScoped<UserQueryRepository>();
+builder.Services.AddScoped<UserStoreRepository>();
 
 /* -------------------------------- Services -------------------------------- */
 builder.Services.AddScoped<UserService>();

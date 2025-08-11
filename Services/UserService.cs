@@ -1,30 +1,34 @@
 using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Dtos.Results;
 using dotnet_smk_telkom_2025.Infrastructure.Databases;
+using dotnet_smk_telkom_2025.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_smk_telkom_2025.Services;
 
 public class UserService
 {
-  private readonly InMemoryDbContext _inMemoryDb;
-
+  private readonly UserQueryRepository _userQueryRepository;
+  private readonly UserStoreRepository _userStoreRepository;
   public UserService(
-    InMemoryDbContext inMemoryDb
+    UserQueryRepository userQueryRepository,
+    UserStoreRepository userStoreRepository
   )
   {
-    _inMemoryDb = inMemoryDb;
+    _userQueryRepository = userQueryRepository;
+    _userStoreRepository = userStoreRepository;
   }
 
   public (IActionResult, List<UserResult>) GetAll()
   {
-    var results = UserResult.MapModels(_inMemoryDb.Users);
+    var users = _userQueryRepository.FindAll();
+    var results = UserResult.MapModels(users);
     return (null, results);
   }
 
   public (IActionResult, UserResult) FindOneById(Guid id)
   {
-    var user = _inMemoryDb.Users.FirstOrDefault(u => u.Id == id);
+    var user = _userQueryRepository.FindOneById(id);
     if (user == null)
     {
       return (new NotFoundObjectResult("User not found"), null);
@@ -38,10 +42,7 @@ public class UserService
   )
   {
     var user = UserCreateParameter.ToModel(parameter);
-    user.Id = Guid.NewGuid();
-    user.CreatedAt = DateTime.Now;
-    user.UpdatedAt = DateTime.Now;
-    _inMemoryDb.Users.Add(user);
+    user = _userStoreRepository.Create(user);
 
     var result = new UserResult(user);
     return (null, result);
@@ -52,19 +53,13 @@ public class UserService
     UserUpdateParameter parameter
   )
   {
-    var user = _inMemoryDb.Users.FirstOrDefault(u => u.Id == id);
+    var user = _userQueryRepository.FindOneById(id);
     if (user == null)
     {
       return (new NotFoundObjectResult("User not found"), null);
     }
     user = UserUpdateParameter.ToModel(user, parameter);
-
-    var index = _inMemoryDb.Users.FindIndex(u => u.Id == user.Id);
-    if (index >= 0)
-    {
-      user.UpdatedAt = DateTime.Now;
-      _inMemoryDb.Users[index] = user;
-    }
+    user = _userStoreRepository.UpdateById(id, user);
 
     var result = new UserResult(user);
     return (null, result);
@@ -74,12 +69,13 @@ public class UserService
     Guid id
   )
   {
-    var user = _inMemoryDb.Users.FirstOrDefault(u => u.Id == id);
+    var user = _userQueryRepository.FindOneById(id);
     if (user == null)
     {
       return (new NotFoundObjectResult("User not found"), null);
     }
-    _inMemoryDb.Users.Remove(user);
+
+    _userStoreRepository.DeleteById(id);
     return (null, null);
   }
 }
