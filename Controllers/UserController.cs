@@ -11,7 +11,7 @@ namespace dotnet_smk_telkom_2025.Controllers;
 public class UserController : ControllerBase
 {
   private readonly ILogger<UserController> _logger;
-  private readonly List<User> _userDatas;
+  private readonly InMemoryDb _inMemoryDb;
 
   public UserController(
     ILogger<UserController> logger,
@@ -19,20 +19,20 @@ public class UserController : ControllerBase
   )
   {
     _logger = logger;
-    _userDatas = inMemoryDb.Users;
+    _inMemoryDb = inMemoryDb;
   }
 
   [HttpGet]
   public IActionResult GetAll()
   {
-    var results = UserResult.MapModels(_userDatas);
+    var results = UserResult.MapModels(_inMemoryDb.Users);
     return Ok(results);
   }
 
   [HttpGet("{id}")]
   public IActionResult FindOneById(Guid id)
   {
-    var user = _userDatas.FirstOrDefault(u => u.Id == id);
+    var user = _inMemoryDb.Users.FirstOrDefault(u => u.Id == id);
     if (user == null)
     {
       return NotFound("User not found");
@@ -50,7 +50,7 @@ public class UserController : ControllerBase
     user.Id = Guid.NewGuid();
     user.CreatedAt = DateTime.Now;
     user.UpdatedAt = DateTime.Now;
-    _userDatas.Add(user);
+    _inMemoryDb.Users.Add(user);
 
     var result = new UserResult(user);
     return Ok(result);
@@ -62,18 +62,18 @@ public class UserController : ControllerBase
     [FromBody] UserUpdateParameter parameter
   )
   {
-    var user = _userDatas.FirstOrDefault(u => u.Id == id);
+    var user = _inMemoryDb.Users.FirstOrDefault(u => u.Id == id);
     if (user == null)
     {
       return NotFound("User not found");
     }
     user = UserUpdateParameter.ToModel(user, parameter);
 
-    var index = _userDatas.FindIndex(u => u.Id == user.Id);
+    var index = _inMemoryDb.Users.FindIndex(u => u.Id == user.Id);
     if (index >= 0)
     {
       user.UpdatedAt = DateTime.Now;
-      _userDatas[index] = user;
+      _inMemoryDb.Users[index] = user;
     }
 
     var result = new UserResult(user);
@@ -85,12 +85,12 @@ public class UserController : ControllerBase
     Guid id
   )
   {
-    var user = _userDatas.FirstOrDefault(u => u.Id == id);
+    var user = _inMemoryDb.Users.FirstOrDefault(u => u.Id == id);
     if (user == null)
     {
       return NotFound("User not found");
     }
-    _userDatas.Remove(user);
+    _inMemoryDb.Users.Remove(user);
     return Ok();
   }
 }
