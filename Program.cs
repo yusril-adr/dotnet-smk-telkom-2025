@@ -1,11 +1,11 @@
-using dotnet_smk_telkom_2025.Repositories;
+using dotnet_smk_telkom_2025.Infrastructure.Databases;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddSingleton<InMemoryDb>();
 /* ------------------------------ Repositories ------------------------------ */
-builder.Services.AddSingleton<UserQueryRepository>();
 
 /* -------------------------------- Services -------------------------------- */
 

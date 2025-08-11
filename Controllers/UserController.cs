@@ -1,7 +1,7 @@
 using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Dtos.Results;
+using dotnet_smk_telkom_2025.Infrastructure.Databases;
 using dotnet_smk_telkom_2025.Models;
-using dotnet_smk_telkom_2025.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_smk_telkom_2025.Controllers;
@@ -15,11 +15,11 @@ public class UserController : ControllerBase
 
   public UserController(
     ILogger<UserController> logger,
-    UserQueryRepository userQueryRepository
+    InMemoryDb inMemoryDb
   )
   {
     _logger = logger;
-    _userDatas = userQueryRepository.GetDatas();
+    _userDatas = inMemoryDb.Users;
   }
 
   [HttpGet]
