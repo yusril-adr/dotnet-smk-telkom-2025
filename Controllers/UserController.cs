@@ -11,11 +11,11 @@ namespace dotnet_smk_telkom_2025.Controllers;
 public class UserController : ControllerBase
 {
   private readonly ILogger<UserController> _logger;
-  private readonly InMemoryDb _inMemoryDb;
+  private readonly InMemoryDbContext _inMemoryDb;
 
   public UserController(
     ILogger<UserController> logger,
-    InMemoryDb inMemoryDb
+    InMemoryDbContext inMemoryDb
   )
   {
     _logger = logger;
