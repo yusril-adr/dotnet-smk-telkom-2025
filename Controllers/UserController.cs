@@ -1,7 +1,5 @@
 using dotnet_smk_telkom_2025.Dtos.Parameters;
-using dotnet_smk_telkom_2025.Dtos.Results;
-using dotnet_smk_telkom_2025.Infrastructure.Databases;
-using dotnet_smk_telkom_2025.Models;
+using dotnet_smk_telkom_2025.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_smk_telkom_2025.Controllers;
@@ -11,34 +9,39 @@ namespace dotnet_smk_telkom_2025.Controllers;
 public class UserController : ControllerBase
 {
   private readonly ILogger<UserController> _logger;
-  private readonly InMemoryDbContext _inMemoryDb;
+  private readonly UserService _userService;
 
   public UserController(
     ILogger<UserController> logger,
-    InMemoryDbContext inMemoryDb
+    UserService userService
   )
   {
     _logger = logger;
-    _inMemoryDb = inMemoryDb;
+    _userService = userService;
   }
 
   [HttpGet]
   public IActionResult GetAll()
   {
-    var results = UserResult.MapModels(_inMemoryDb.Users);
+    var (error, results) = _userService.GetAll();
+    if (error != null)
+    {
+      return error;
+    }
+
     return Ok(results);
   }
 
   [HttpGet("{id}")]
   public IActionResult FindOneById(Guid id)
   {
-    var user = _inMemoryDb.Users.FirstOrDefault(u => u.Id == id);
-    if (user == null)
+    var (error, results) = _userService.FindOneById(id);
+    if (error != null)
     {
-      return NotFound("User not found");
+      return error;
     }
-    var result = new UserResult(user);
-    return Ok(result);
+
+    return Ok(results);
   }
 
   [HttpPost]
@@ -46,14 +49,13 @@ public class UserController : ControllerBase
     [FromBody] UserCreateParameter parameter
   )
   {
-    var user = UserCreateParameter.ToModel(parameter);
-    user.Id = Guid.NewGuid();
-    user.CreatedAt = DateTime.Now;
-    user.UpdatedAt = DateTime.Now;
-    _inMemoryDb.Users.Add(user);
+    var (error, results) = _userService.Create(parameter);
+    if (error != null)
+    {
+      return error;
+    }
 
-    var result = new UserResult(user);
-    return Ok(result);
+    return Ok(results);
   }
 
   [HttpPatch("{id}")]
@@ -62,22 +64,13 @@ public class UserController : ControllerBase
     [FromBody] UserUpdateParameter parameter
   )
   {
-    var user = _inMemoryDb.Users.FirstOrDefault(u => u.Id == id);
-    if (user == null)
+    var (error, results) = _userService.Update(id, parameter);
+    if (error != null)
     {
-      return NotFound("User not found");
-    }
-    user = UserUpdateParameter.ToModel(user, parameter);
-
-    var index = _inMemoryDb.Users.FindIndex(u => u.Id == user.Id);
-    if (index >= 0)
-    {
-      user.UpdatedAt = DateTime.Now;
-      _inMemoryDb.Users[index] = user;
+      return error;
     }
 
-    var result = new UserResult(user);
-    return Ok(result);
+    return Ok(results);
   }
 
   [HttpDelete("{id}")]
@@ -85,12 +78,12 @@ public class UserController : ControllerBase
     Guid id
   )
   {
-    var user = _inMemoryDb.Users.FirstOrDefault(u => u.Id == id);
-    if (user == null)
+    var (error, results) = _userService.Delete(id);
+    if (error != null)
     {
-      return NotFound("User not found");
+      return error;
     }
-    _inMemoryDb.Users.Remove(user);
-    return Ok();
+
+    return Ok(results);
   }
 }

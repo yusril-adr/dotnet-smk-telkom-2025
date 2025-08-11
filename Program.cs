@@ -1,4 +1,5 @@
 using dotnet_smk_telkom_2025.Infrastructure.Databases;
+using dotnet_smk_telkom_2025.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,7 @@ builder.Services.AddSingleton<InMemoryDbContext>();
 /* ------------------------------ Repositories ------------------------------ */
 
 /* -------------------------------- Services -------------------------------- */
-
+builder.Services.AddScoped<UserService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
