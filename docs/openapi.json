@@ -27,10 +27,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserResult"
-                  }
+                  "$ref": "#/components/schemas/ApiResponseListUser"
                 }
               }
             }
@@ -52,12 +49,12 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "User created successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserResult"
+                  "$ref": "#/components/schemas/ApiResponseDataUser"
                 }
               }
             }
@@ -98,7 +95,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserResult"
+                  "$ref": "#/components/schemas/ApiResponseDataUser"
                 }
               }
             }
@@ -148,7 +145,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserResult"
+                  "$ref": "#/components/schemas/ApiResponseDataUser"
                 }
               }
             }
@@ -194,7 +191,29 @@
         ],
         "responses": {
           "200": {
-            "description": "User deleted successfully"
+            "description": "User deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "StatusCode": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "null",
+                      "example": null
+                    },
+                    "Version": {
+                      "type": "string",
+                      "example": "1.0.0"
+                    }
+                  },
+                  "required": ["StatusCode", "data", "Version"]
+                }
+              }
+            }
           },
           "404": {
             "description": "User not found",
@@ -574,6 +593,61 @@
             "description": "User's email address"
           }
         }
+      },
+      "ApiResponseDataUser": {
+        "type": "object",
+        "properties": {
+          "StatusCode": {
+            "type": "integer",
+            "description": "HTTP status code"
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserResult"
+          },
+          "Version": {
+            "type": "string",
+            "description": "API version",
+            "example": "1.0.0"
+          }
+        },
+        "required": ["StatusCode", "data", "Version"]
+      },
+      "ApiResponseListUser": {
+        "type": "object",
+        "properties": {
+          "StatusCode": {
+            "type": "integer",
+            "description": "HTTP status code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UserResult"
+                }
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "Count": {
+                    "type": "integer",
+                    "description": "Number of items in the list"
+                  }
+                },
+                "required": ["Count"]
+              }
+            },
+            "required": ["items", "meta"]
+          },
+          "Version": {
+            "type": "string",
+            "description": "API version",
+            "example": "1.0.0"
+          }
+        },
+        "required": ["StatusCode", "data", "Version"]
       },
       "ErrorResponse": {
         "type": "object",
