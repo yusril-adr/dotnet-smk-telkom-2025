@@ -23,24 +23,14 @@ public class UserController : ControllerBase
   [HttpGet]
   public IActionResult GetAll()
   {
-    var (error, results) = _userService.GetAll();
-    if (error != null)
-    {
-      return error;
-    }
-
+    var results = _userService.GetAll();
     return Ok(results);
   }
 
   [HttpGet("{id}")]
   public IActionResult FindOneById(Guid id)
   {
-    var (error, results) = _userService.FindOneById(id);
-    if (error != null)
-    {
-      return error;
-    }
-
+    var results = _userService.FindOneById(id);
     return Ok(results);
   }
 
@@ -49,13 +39,8 @@ public class UserController : ControllerBase
     [FromBody] UserCreateParameter parameter
   )
   {
-    var (error, results) = _userService.Create(parameter);
-    if (error != null)
-    {
-      return error;
-    }
-
-    return Ok(results);
+    var result = _userService.Create(parameter);
+    return Ok(result);
   }
 
   [HttpPatch("{id}")]
@@ -64,13 +49,8 @@ public class UserController : ControllerBase
     [FromBody] UserUpdateParameter parameter
   )
   {
-    var (error, results) = _userService.Update(id, parameter);
-    if (error != null)
-    {
-      return error;
-    }
-
-    return Ok(results);
+    var result = _userService.Update(id, parameter);
+    return Ok(result);
   }
 
   [HttpDelete("{id}")]
@@ -78,12 +58,8 @@ public class UserController : ControllerBase
     Guid id
   )
   {
-    var (error, results) = _userService.Delete(id);
-    if (error != null)
-    {
-      return error;
-    }
+    _userService.Delete(id);
 
-    return Ok(results);
+    return Ok();
   }
 }

@@ -1,10 +1,7 @@
-using System.Net;
 using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Dtos.Results;
-using dotnet_smk_telkom_2025.Infrastructure.Databases;
 using dotnet_smk_telkom_2025.Infrastructure.Exceptions;
 using dotnet_smk_telkom_2025.Repositories;
-using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_smk_telkom_2025.Services;
 
@@ -21,36 +18,25 @@ public class UserService
     _userStoreRepository = userStoreRepository;
   }
 
-  public (IActionResult, List<UserResult>) GetAll()
+  public List<UserResult> GetAll()
   {
     var users = _userQueryRepository.FindAll();
     var results = UserResult.MapModels(users);
-    return (null, results);
+    return results;
   }
 
-  public (IActionResult, UserResult) FindOneById(Guid id)
+  public UserResult FindOneById(Guid id)
   {
-    try
+    var user = _userQueryRepository.FindOneById(id);
+    if (user == null)
     {
-      var user = _userQueryRepository.FindOneById(id);
-      if (user == null)
-      {
-        throw new NotFoundException("User not found");
-      }
-      var result = new UserResult(user);
-      return (null, result);
+      throw new NotFoundException("User not found");
     }
-    catch (NotFoundException e)
-    {
-      return (new NotFoundObjectResult(e.Message), null);
-    }
-    catch (Exception e)
-    {
-      return (new ObjectResult(e.Message) { StatusCode = StatusCodes.Status500InternalServerError }, null);
-    }
+    var result = new UserResult(user);
+    return result;
   }
 
-  public (IActionResult, UserResult) Create(
+  public UserResult Create(
     UserCreateParameter parameter
   )
   {
@@ -58,10 +44,10 @@ public class UserService
     user = _userStoreRepository.Create(user);
 
     var result = new UserResult(user);
-    return (null, result);
+    return result;
   }
 
-  public (IActionResult, UserResult) Update(
+  public UserResult Update(
     Guid id,
     UserUpdateParameter parameter
   )
@@ -69,26 +55,25 @@ public class UserService
     var user = _userQueryRepository.FindOneById(id);
     if (user == null)
     {
-      return (new NotFoundObjectResult("User not found"), null);
+      throw new NotFoundException("User not found");
     }
     user = UserUpdateParameter.ToModel(user, parameter);
     user = _userStoreRepository.UpdateById(id, user);
 
     var result = new UserResult(user);
-    return (null, result);
+    return result;
   }
 
-  public (IActionResult, UserResult) Delete(
+  public void Delete(
     Guid id
   )
   {
     var user = _userQueryRepository.FindOneById(id);
     if (user == null)
     {
-      return (new NotFoundObjectResult("User not found"), null);
+      throw new NotFoundException("User not found");
     }
 
     _userStoreRepository.DeleteById(id);
-    return (null, null);
   }
 }
