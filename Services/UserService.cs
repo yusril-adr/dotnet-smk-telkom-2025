@@ -1,6 +1,8 @@
+using System.Net;
 using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Dtos.Results;
 using dotnet_smk_telkom_2025.Infrastructure.Databases;
+using dotnet_smk_telkom_2025.Infrastructure.Exceptions;
 using dotnet_smk_telkom_2025.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,13 +30,24 @@ public class UserService
 
   public (IActionResult, UserResult) FindOneById(Guid id)
   {
-    var user = _userQueryRepository.FindOneById(id);
-    if (user == null)
+    try
     {
-      return (new NotFoundObjectResult("User not found"), null);
+      var user = _userQueryRepository.FindOneById(id);
+      if (user == null)
+      {
+        throw new NotFoundException("User not found");
+      }
+      var result = new UserResult(user);
+      return (null, result);
     }
-    var result = new UserResult(user);
-    return (null, result);
+    catch (NotFoundException e)
+    {
+      return (new NotFoundObjectResult(e.Message), null);
+    }
+    catch (Exception e)
+    {
+      return (new ObjectResult(e.Message) { StatusCode = StatusCodes.Status500InternalServerError }, null);
+    }
   }
 
   public (IActionResult, UserResult) Create(
