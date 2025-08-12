@@ -12,7 +12,6 @@ public class HandlerException(
     private readonly RequestDelegate _next = next;
     private readonly IConfiguration _config = config;
 
-
     public async Task Invoke(HttpContext context)
     {
         try
