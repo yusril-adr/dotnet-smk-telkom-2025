@@ -4,7 +4,7 @@ using dotnet_smk_telkom_2025.Infrastructure.Exceptions;
 
 namespace dotnet_smk_telkom_2025.Infrastructure.Middlewares;
 
-public class HandlerException(
+public class ExceptionHandler(
     RequestDelegate next,
     IConfiguration config
 )
