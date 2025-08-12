@@ -1,4 +1,7 @@
+using System.Net;
 using dotnet_smk_telkom_2025.Dtos.Parameters;
+using dotnet_smk_telkom_2025.Dtos.Results;
+using dotnet_smk_telkom_2025.Infrastructure.Dtos;
 using dotnet_smk_telkom_2025.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,45 +24,45 @@ public class UserController : ControllerBase
   }
 
   [HttpGet]
-  public IActionResult GetAll()
+  public ApiResponse GetAll()
   {
     var results = _userService.GetAll();
-    return Ok(results);
+    return new ApiResponseList<UserResult>(results);
   }
 
   [HttpGet("{id}")]
-  public IActionResult FindOneById(Guid id)
+  public ApiResponse FindOneById(Guid id)
   {
-    var results = _userService.FindOneById(id);
-    return Ok(results);
+    var result = _userService.FindOneById(id);
+    return new ApiResponseData<UserResult>(result);
   }
 
   [HttpPost]
-  public IActionResult Create(
+  public ApiResponse Create(
     [FromBody] UserCreateParameter parameter
   )
   {
     var result = _userService.Create(parameter);
-    return Ok(result);
+    return new ApiResponseData<UserResult>(result, HttpStatusCode.Created);
   }
 
   [HttpPatch("{id}")]
-  public IActionResult Update(
+  public ApiResponse Update(
     Guid id,
     [FromBody] UserUpdateParameter parameter
   )
   {
     var result = _userService.Update(id, parameter);
-    return Ok(result);
+    return new ApiResponseData<UserResult>(result);
   }
 
   [HttpDelete("{id}")]
-  public IActionResult Delete(
+  public ApiResponse Delete(
     Guid id
   )
   {
     _userService.Delete(id);
 
-    return Ok();
+    return new ApiResponseData<UserResult>(null);
   }
 }
