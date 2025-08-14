@@ -6,11 +6,13 @@ namespace dotnet_smk_telkom_2025.Infrastructure.Middlewares;
 
 public class ExceptionHandler(
     RequestDelegate next,
-    IConfiguration config
+    IConfiguration config,
+    ILogger<ExceptionHandler> logger
 )
 {
     private readonly RequestDelegate _next = next;
     private readonly IConfiguration _config = config;
+    private readonly ILogger<ExceptionHandler> _logger = logger;
 
     public async Task Invoke(HttpContext context)
     {
@@ -29,6 +31,10 @@ public class ExceptionHandler(
             {
                 statusCode = appException.StatusCode;
                 errorMessage = appException.Message;
+            }
+            else
+            {
+                _logger.LogError("<ExceptionHandler> Error occurred: {error}", error);
             }
 
             context.Response.StatusCode = (int)statusCode;
