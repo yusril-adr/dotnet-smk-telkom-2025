@@ -416,6 +416,432 @@
           }
         }
       }
+    },
+    "/posts": {
+      "get": {
+        "tags": ["Posts"],
+        "summary": "Get all posts",
+        "description": "Retrieves a list of all posts",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListPost"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Posts"],
+        "summary": "Create a new post",
+        "description": "Creates a new post with the provided information",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostCreateParameter"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Post created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDataPost"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/{id}": {
+      "get": {
+        "tags": ["Posts"],
+        "summary": "Get post by ID",
+        "description": "Retrieves a specific post by its ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDataPost"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Post not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Post not found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Posts"],
+        "summary": "Update post",
+        "description": "Updates an existing post with the provided information",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostUpdateParameter"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Post updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDataPost"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Post not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Post not found"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Posts"],
+        "summary": "Delete post",
+        "description": "Deletes a post by its ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "StatusCode": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "null",
+                      "example": null
+                    },
+                    "Version": {
+                      "type": "string",
+                      "example": "1.0.0"
+                    }
+                  },
+                  "required": ["StatusCode", "data", "Version"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Post not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Post not found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/comments": {
+      "get": {
+        "tags": ["PostComments"],
+        "summary": "Get all post comments",
+        "description": "Retrieves a list of all post comments",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListPostComment"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["PostComments"],
+        "summary": "Create a new post comment",
+        "description": "Creates a new post comment with the provided information",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostCommentCreateParameter"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Post comment created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDataPostComment"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/comments/{id}": {
+      "get": {
+        "tags": ["PostComments"],
+        "summary": "Get post comment by ID",
+        "description": "Retrieves a specific post comment by its ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post comment ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDataPostComment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Post comment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Post comment not found"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["PostComments"],
+        "summary": "Update post comment",
+        "description": "Updates an existing post comment with the provided information",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post comment ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostCommentUpdateParameter"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Post comment updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDataPostComment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Post comment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Post comment not found"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["PostComments"],
+        "summary": "Delete post comment",
+        "description": "Deletes a post comment by its ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Post comment ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post comment deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "StatusCode": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "null",
+                      "example": null
+                    },
+                    "Version": {
+                      "type": "string",
+                      "example": "1.0.0"
+                    }
+                  },
+                  "required": ["StatusCode", "data", "Version"]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Post comment not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Post comment not found"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -649,6 +1075,235 @@
         },
         "required": ["StatusCode", "data", "Version"]
       },
+      "PostResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Post unique identifier"
+          },
+          "title": {
+            "type": "string",
+            "description": "Post title"
+          },
+          "content": {
+            "type": "string",
+            "description": "Post content"
+          },
+          "authorUserId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Author user ID"
+          },
+          "authorUser": {
+            "$ref": "#/components/schemas/UserResult"
+          }
+        },
+        "required": ["id", "title", "content", "authorUserId"]
+      },
+      "PostCreateParameter": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Post title"
+          },
+          "content": {
+            "type": "string",
+            "description": "Post content"
+          },
+          "authorUserId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Author user ID"
+          }
+        },
+        "required": ["title", "content", "authorUserId"]
+      },
+      "PostUpdateParameter": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Post title"
+          },
+          "content": {
+            "type": "string",
+            "description": "Post content"
+          }
+        }
+      },
+      "ApiResponseDataPost": {
+        "type": "object",
+        "properties": {
+          "StatusCode": {
+            "type": "integer",
+            "description": "HTTP status code"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PostResult"
+          },
+          "Version": {
+            "type": "string",
+            "description": "API version",
+            "example": "1.0.0"
+          }
+        },
+        "required": ["StatusCode", "data", "Version"]
+      },
+      "ApiResponseListPost": {
+        "type": "object",
+        "properties": {
+          "StatusCode": {
+            "type": "integer",
+            "description": "HTTP status code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PostResult"
+                }
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "Count": {
+                    "type": "integer",
+                    "description": "Number of items in the list"
+                  }
+                },
+                "required": ["Count"]
+              }
+            },
+            "required": ["items", "meta"]
+          },
+          "Version": {
+            "type": "string",
+            "description": "API version",
+            "example": "1.0.0"
+          }
+        },
+        "required": ["StatusCode", "data", "Version"]
+      },
+      "PostCommentResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Post comment unique identifier"
+          },
+          "content": {
+            "type": "string",
+            "description": "Comment content"
+          },
+          "authorUserId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Author user ID"
+          },
+          "postId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Post ID"
+          },
+          "authorUser": {
+            "$ref": "#/components/schemas/UserResult"
+          },
+          "post": {
+            "$ref": "#/components/schemas/PostResult"
+          }
+        },
+        "required": ["id", "content", "authorUserId", "postId"]
+      },
+      "PostCommentCreateParameter": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "Comment content"
+          },
+          "authorUserId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Author user ID"
+          },
+          "postId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Post ID"
+          }
+        },
+        "required": ["content", "authorUserId", "postId"]
+      },
+      "PostCommentUpdateParameter": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "Comment content"
+          }
+        }
+      },
+      "ApiResponseDataPostComment": {
+        "type": "object",
+        "properties": {
+          "StatusCode": {
+            "type": "integer",
+            "description": "HTTP status code"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PostCommentResult"
+          },
+          "Version": {
+            "type": "string",
+            "description": "API version",
+            "example": "1.0.0"
+          }
+        },
+        "required": ["StatusCode", "data", "Version"]
+      },
+      "ApiResponseListPostComment": {
+        "type": "object",
+        "properties": {
+          "StatusCode": {
+            "type": "integer",
+            "description": "HTTP status code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PostCommentResult"
+                }
+              },
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "Count": {
+                    "type": "integer",
+                    "description": "Number of items in the list"
+                  }
+                },
+                "required": ["Count"]
+              }
+            },
+            "required": ["items", "meta"]
+          },
+          "Version": {
+            "type": "string",
+            "description": "API version",
+            "example": "1.0.0"
+          }
+        },
+        "required": ["StatusCode", "data", "Version"]
+      },
       "ErrorResponse": {
         "type": "object",
         "properties": {
@@ -684,6 +1339,14 @@
     {
       "name": "Users",
       "description": "User management endpoints"
+    },
+    {
+      "name": "Posts",
+      "description": "Post management endpoints"
+    },
+    {
+      "name": "PostComments",
+      "description": "Post comment management endpoints"
     }
   ]
 }

@@ -1043,6 +1043,1056 @@
               }
             }
           ]
+        },
+        {
+          "name": "Posts",
+          "id": 4603853,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 847686,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "Get all posts",
+              "api": {
+                "id": "20215016",
+                "method": "get",
+                "path": "/posts",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "29233815",
+                    "code": 200,
+                    "name": "OK",
+                    "headers": [],
+                    "jsonSchema": {
+                      "$ref": "#/definitions/8706200"
+                    },
+                    "description": "Successful response",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "required": false,
+                  "additionalContentTypes": [],
+                  "oasExtensions": ""
+                },
+                "description": "Retrieves a list of all posts",
+                "tags": [
+                  "Posts"
+                ],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 0,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 847686,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "Create a new post",
+              "api": {
+                "id": "20215017",
+                "method": "post",
+                "path": "/posts",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "29233816",
+                    "code": 201,
+                    "name": "Created",
+                    "headers": [],
+                    "jsonSchema": {
+                      "$ref": "#/definitions/8706199"
+                    },
+                    "description": "Post created successfully",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  },
+                  {
+                    "id": "29233817",
+                    "code": 400,
+                    "name": "Bad Request",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "description": "Bad request - invalid input",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/8706197"
+                  },
+                  "mediaType": "application/json",
+                  "oasExtensions": "",
+                  "required": true,
+                  "additionalContentTypes": []
+                },
+                "description": "Creates a new post with the provided information",
+                "tags": [
+                  "Posts"
+                ],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 847686,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "Get post by ID",
+              "api": {
+                "id": "20215018",
+                "method": "get",
+                "path": "/posts/{id}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "Post ID",
+                      "example": "",
+                      "type": "string",
+                      "schema": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "29233818",
+                    "code": 200,
+                    "name": "OK",
+                    "headers": [],
+                    "jsonSchema": {
+                      "$ref": "#/definitions/8706199"
+                    },
+                    "description": "Successful response",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  },
+                  {
+                    "id": "29233819",
+                    "code": 404,
+                    "name": "Record Not Found",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "string",
+                      "examples": [
+                        "Post not found"
+                      ]
+                    },
+                    "description": "Post not found",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "required": false,
+                  "additionalContentTypes": [],
+                  "oasExtensions": ""
+                },
+                "description": "Retrieves a specific post by its ID",
+                "tags": [
+                  "Posts"
+                ],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 847686,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "Update post",
+              "api": {
+                "id": "20215019",
+                "method": "patch",
+                "path": "/posts/{id}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "Post ID",
+                      "example": "",
+                      "type": "string",
+                      "schema": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "29233820",
+                    "code": 200,
+                    "name": "OK",
+                    "headers": [],
+                    "jsonSchema": {
+                      "$ref": "#/definitions/8706199"
+                    },
+                    "description": "Post updated successfully",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  },
+                  {
+                    "id": "29233821",
+                    "code": 400,
+                    "name": "Bad Request",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "description": "Bad request - invalid input",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  },
+                  {
+                    "id": "29233822",
+                    "code": 404,
+                    "name": "Record Not Found",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "string",
+                      "examples": [
+                        "Post not found"
+                      ]
+                    },
+                    "description": "Post not found",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/8706198"
+                  },
+                  "mediaType": "application/json",
+                  "oasExtensions": "",
+                  "required": true,
+                  "additionalContentTypes": []
+                },
+                "description": "Updates an existing post with the provided information",
+                "tags": [
+                  "Posts"
+                ],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 18,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 847686,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "Delete post",
+              "api": {
+                "id": "20215020",
+                "method": "delete",
+                "path": "/posts/{id}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "Post ID",
+                      "example": "",
+                      "type": "string",
+                      "schema": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "29233823",
+                    "code": 200,
+                    "name": "OK",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {
+                        "StatusCode": {
+                          "type": "integer",
+                          "examples": [
+                            200
+                          ]
+                        },
+                        "data": {
+                          "type": "null",
+                          "examples": [
+                            null
+                          ]
+                        },
+                        "Version": {
+                          "type": "string",
+                          "examples": [
+                            "1.0.0"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "StatusCode",
+                        "data",
+                        "Version"
+                      ],
+                      "x-apidog-orders": [
+                        "StatusCode",
+                        "data",
+                        "Version"
+                      ]
+                    },
+                    "description": "Post deleted successfully",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  },
+                  {
+                    "id": "29233824",
+                    "code": 404,
+                    "name": "Record Not Found",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "string",
+                      "examples": [
+                        "Post not found"
+                      ]
+                    },
+                    "description": "Post not found",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "required": false,
+                  "additionalContentTypes": [],
+                  "oasExtensions": ""
+                },
+                "description": "Deletes a post by its ID",
+                "tags": [
+                  "Posts"
+                ],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 24,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 847686,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            }
+          ]
+        },
+        {
+          "name": "PostComments",
+          "id": 4603854,
+          "auth": {},
+          "securityScheme": {},
+          "parentId": 0,
+          "serverId": "",
+          "description": "",
+          "identityPattern": {
+            "httpApi": {
+              "type": "inherit",
+              "bodyType": "",
+              "fields": []
+            }
+          },
+          "shareSettings": {},
+          "visibility": "INHERITED",
+          "moduleId": 847686,
+          "preProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "postProcessors": [
+            {
+              "id": "inheritProcessors",
+              "type": "inheritProcessors",
+              "data": {}
+            }
+          ],
+          "inheritPostProcessors": {},
+          "inheritPreProcessors": {},
+          "items": [
+            {
+              "name": "Get all post comments",
+              "api": {
+                "id": "20215021",
+                "method": "get",
+                "path": "/posts/comments",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "29233825",
+                    "code": 200,
+                    "name": "OK",
+                    "headers": [],
+                    "jsonSchema": {
+                      "$ref": "#/definitions/8706205"
+                    },
+                    "description": "Successful response",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "required": false,
+                  "additionalContentTypes": [],
+                  "oasExtensions": ""
+                },
+                "description": "Retrieves a list of all post comments",
+                "tags": [
+                  "PostComments"
+                ],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 0,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 847686,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "Create a new post comment",
+              "api": {
+                "id": "20215022",
+                "method": "post",
+                "path": "/posts/comments",
+                "parameters": {
+                  "path": [],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "29233826",
+                    "code": 201,
+                    "name": "Created",
+                    "headers": [],
+                    "jsonSchema": {
+                      "$ref": "#/definitions/8706204"
+                    },
+                    "description": "Post comment created successfully",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  },
+                  {
+                    "id": "29233827",
+                    "code": 400,
+                    "name": "Bad Request",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "description": "Bad request - invalid input",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/8706202"
+                  },
+                  "mediaType": "application/json",
+                  "oasExtensions": "",
+                  "required": true,
+                  "additionalContentTypes": []
+                },
+                "description": "Creates a new post comment with the provided information",
+                "tags": [
+                  "PostComments"
+                ],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 6,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 847686,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "Get post comment by ID",
+              "api": {
+                "id": "20215023",
+                "method": "get",
+                "path": "/posts/comments/{id}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "Post comment ID",
+                      "example": "",
+                      "type": "string",
+                      "schema": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "29233828",
+                    "code": 200,
+                    "name": "OK",
+                    "headers": [],
+                    "jsonSchema": {
+                      "$ref": "#/definitions/8706204"
+                    },
+                    "description": "Successful response",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  },
+                  {
+                    "id": "29233829",
+                    "code": 404,
+                    "name": "Record Not Found",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "string",
+                      "examples": [
+                        "Post comment not found"
+                      ]
+                    },
+                    "description": "Post comment not found",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "required": false,
+                  "additionalContentTypes": [],
+                  "oasExtensions": ""
+                },
+                "description": "Retrieves a specific post comment by its ID",
+                "tags": [
+                  "PostComments"
+                ],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 12,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 847686,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "Update post comment",
+              "api": {
+                "id": "20215024",
+                "method": "patch",
+                "path": "/posts/comments/{id}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "Post comment ID",
+                      "example": "",
+                      "type": "string",
+                      "schema": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "29233830",
+                    "code": 200,
+                    "name": "OK",
+                    "headers": [],
+                    "jsonSchema": {
+                      "$ref": "#/definitions/8706204"
+                    },
+                    "description": "Post comment updated successfully",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  },
+                  {
+                    "id": "29233831",
+                    "code": 400,
+                    "name": "Bad Request",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "description": "Bad request - invalid input",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  },
+                  {
+                    "id": "29233832",
+                    "code": 404,
+                    "name": "Record Not Found",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "string",
+                      "examples": [
+                        "Post comment not found"
+                      ]
+                    },
+                    "description": "Post comment not found",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "application/json",
+                  "parameters": [],
+                  "jsonSchema": {
+                    "$ref": "#/definitions/8706203"
+                  },
+                  "mediaType": "application/json",
+                  "oasExtensions": "",
+                  "required": true,
+                  "additionalContentTypes": []
+                },
+                "description": "Updates an existing post comment with the provided information",
+                "tags": [
+                  "PostComments"
+                ],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 18,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 847686,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            },
+            {
+              "name": "Delete post comment",
+              "api": {
+                "id": "20215025",
+                "method": "delete",
+                "path": "/posts/comments/{id}",
+                "parameters": {
+                  "path": [
+                    {
+                      "id": "id#0",
+                      "name": "id",
+                      "required": true,
+                      "description": "Post comment ID",
+                      "example": "",
+                      "type": "string",
+                      "schema": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    }
+                  ],
+                  "query": [],
+                  "cookie": [],
+                  "header": []
+                },
+                "auth": {},
+                "securityScheme": {},
+                "commonParameters": {},
+                "responses": [
+                  {
+                    "id": "29233833",
+                    "code": 200,
+                    "name": "OK",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "object",
+                      "properties": {
+                        "StatusCode": {
+                          "type": "integer",
+                          "examples": [
+                            200
+                          ]
+                        },
+                        "data": {
+                          "type": "null",
+                          "examples": [
+                            null
+                          ]
+                        },
+                        "Version": {
+                          "type": "string",
+                          "examples": [
+                            "1.0.0"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "StatusCode",
+                        "data",
+                        "Version"
+                      ],
+                      "x-apidog-orders": [
+                        "StatusCode",
+                        "data",
+                        "Version"
+                      ]
+                    },
+                    "description": "Post comment deleted successfully",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  },
+                  {
+                    "id": "29233834",
+                    "code": 404,
+                    "name": "Record Not Found",
+                    "headers": [],
+                    "jsonSchema": {
+                      "type": "string",
+                      "examples": [
+                        "Post comment not found"
+                      ]
+                    },
+                    "description": "Post comment not found",
+                    "contentType": "json",
+                    "mediaType": "application/json",
+                    "oasExtensions": ""
+                  }
+                ],
+                "responseExamples": [],
+                "requestBody": {
+                  "type": "none",
+                  "parameters": [],
+                  "required": false,
+                  "additionalContentTypes": [],
+                  "oasExtensions": ""
+                },
+                "description": "Deletes a post comment by its ID",
+                "tags": [
+                  "PostComments"
+                ],
+                "status": "released",
+                "serverId": "",
+                "operationId": "",
+                "sourceUrl": "",
+                "ordering": 24,
+                "cases": [],
+                "mocks": [],
+                "customApiFields": "{}",
+                "advancedSettings": {
+                  "disabledSystemHeaders": {}
+                },
+                "mockScript": {},
+                "codeSamples": [],
+                "commonResponseStatus": {},
+                "responseChildren": [],
+                "visibility": "INHERITED",
+                "moduleId": 847686,
+                "oasExtensions": "",
+                "type": "http",
+                "preProcessors": [],
+                "postProcessors": [],
+                "inheritPostProcessors": {},
+                "inheritPreProcessors": {}
+              }
+            }
+          ]
         }
       ]
     }
@@ -1192,6 +2242,56 @@
               "moduleId": 847686
             },
             {
+              "name": "PostResult",
+              "displayName": "",
+              "id": "#/definitions/8706196",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Post unique identifier"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Post title"
+                    },
+                    "content": {
+                      "type": "string",
+                      "description": "Post content"
+                    },
+                    "authorUserId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Author user ID"
+                    },
+                    "authorUser": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "content",
+                    "authorUserId"
+                  ],
+                  "x-apidog-orders": [
+                    "id",
+                    "title",
+                    "content",
+                    "authorUserId",
+                    "authorUser"
+                  ]
+                }
+              },
+              "visibility": "INHERITED",
+              "moduleId": 847686
+            },
+            {
               "name": "Question2Response",
               "displayName": "",
               "id": "#/definitions/8625580",
@@ -1283,6 +2383,44 @@
               "moduleId": 847686
             },
             {
+              "name": "PostCreateParameter",
+              "displayName": "",
+              "id": "#/definitions/8706197",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Post title"
+                    },
+                    "content": {
+                      "type": "string",
+                      "description": "Post content"
+                    },
+                    "authorUserId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Author user ID"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "content",
+                    "authorUserId"
+                  ],
+                  "x-apidog-orders": [
+                    "title",
+                    "content",
+                    "authorUserId"
+                  ]
+                }
+              },
+              "visibility": "INHERITED",
+              "moduleId": 847686
+            },
+            {
               "name": "Question3Request",
               "displayName": "",
               "id": "#/definitions/8625581",
@@ -1309,6 +2447,33 @@
                   "x-apidog-orders": [
                     "price",
                     "discountPercent"
+                  ]
+                }
+              },
+              "visibility": "INHERITED",
+              "moduleId": 847686
+            },
+            {
+              "name": "PostUpdateParameter",
+              "displayName": "",
+              "id": "#/definitions/8706198",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "description": "Post title"
+                    },
+                    "content": {
+                      "type": "string",
+                      "description": "Post content"
+                    }
+                  },
+                  "x-apidog-orders": [
+                    "title",
+                    "content"
                   ]
                 }
               },
@@ -1367,6 +2532,45 @@
                     },
                     "data": {
                       "$ref": "#/definitions/8665484"
+                    },
+                    "Version": {
+                      "type": "string",
+                      "description": "API version",
+                      "examples": [
+                        "1.0.0"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "StatusCode",
+                    "data",
+                    "Version"
+                  ],
+                  "x-apidog-orders": [
+                    "StatusCode",
+                    "data",
+                    "Version"
+                  ]
+                }
+              },
+              "visibility": "INHERITED",
+              "moduleId": 847686
+            },
+            {
+              "name": "ApiResponseDataPost",
+              "displayName": "",
+              "id": "#/definitions/8706199",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "StatusCode": {
+                      "type": "integer",
+                      "description": "HTTP status code"
+                    },
+                    "data": {
+                      "$ref": "#/definitions/8706196"
                     },
                     "Version": {
                       "type": "string",
@@ -1501,6 +2705,76 @@
               "moduleId": 847686
             },
             {
+              "name": "ApiResponseListPost",
+              "displayName": "",
+              "id": "#/definitions/8706200",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "StatusCode": {
+                      "type": "integer",
+                      "description": "HTTP status code"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/8706196"
+                          }
+                        },
+                        "meta": {
+                          "type": "object",
+                          "properties": {
+                            "Count": {
+                              "type": "integer",
+                              "description": "Number of items in the list"
+                            }
+                          },
+                          "required": [
+                            "Count"
+                          ],
+                          "x-apidog-orders": [
+                            "Count"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "items",
+                        "meta"
+                      ],
+                      "x-apidog-orders": [
+                        "items",
+                        "meta"
+                      ]
+                    },
+                    "Version": {
+                      "type": "string",
+                      "description": "API version",
+                      "examples": [
+                        "1.0.0"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "StatusCode",
+                    "data",
+                    "Version"
+                  ],
+                  "x-apidog-orders": [
+                    "StatusCode",
+                    "data",
+                    "Version"
+                  ]
+                }
+              },
+              "visibility": "INHERITED",
+              "moduleId": 847686
+            },
+            {
               "name": "Question4Response",
               "displayName": "",
               "id": "#/definitions/8625584",
@@ -1546,6 +2820,62 @@
               "moduleId": 847686
             },
             {
+              "name": "PostCommentResult",
+              "displayName": "",
+              "id": "#/definitions/8706201",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Post comment unique identifier"
+                    },
+                    "content": {
+                      "type": "string",
+                      "description": "Comment content"
+                    },
+                    "authorUserId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Author user ID"
+                    },
+                    "postId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Post ID"
+                    },
+                    "authorUser": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "post": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "content",
+                    "authorUserId",
+                    "postId"
+                  ],
+                  "x-apidog-orders": [
+                    "id",
+                    "content",
+                    "authorUserId",
+                    "postId",
+                    "authorUser",
+                    "post"
+                  ]
+                }
+              },
+              "visibility": "INHERITED",
+              "moduleId": 847686
+            },
+            {
               "name": "Question5Response",
               "displayName": "",
               "id": "#/definitions/8625585",
@@ -1571,6 +2901,45 @@
                   "x-apidog-orders": [
                     "daysLate",
                     "lateFee"
+                  ]
+                }
+              },
+              "visibility": "INHERITED",
+              "moduleId": 847686
+            },
+            {
+              "name": "PostCommentCreateParameter",
+              "displayName": "",
+              "id": "#/definitions/8706202",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "string",
+                      "description": "Comment content"
+                    },
+                    "authorUserId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Author user ID"
+                    },
+                    "postId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Post ID"
+                    }
+                  },
+                  "required": [
+                    "content",
+                    "authorUserId",
+                    "postId"
+                  ],
+                  "x-apidog-orders": [
+                    "content",
+                    "authorUserId",
+                    "postId"
                   ]
                 }
               },
@@ -1620,6 +2989,28 @@
               "moduleId": 847686
             },
             {
+              "name": "PostCommentUpdateParameter",
+              "displayName": "",
+              "id": "#/definitions/8706203",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "string",
+                      "description": "Comment content"
+                    }
+                  },
+                  "x-apidog-orders": [
+                    "content"
+                  ]
+                }
+              },
+              "visibility": "INHERITED",
+              "moduleId": 847686
+            },
+            {
               "name": "UserCreateParameter",
               "displayName": "",
               "id": "#/definitions/8630357",
@@ -1654,6 +3045,45 @@
               "moduleId": 847686
             },
             {
+              "name": "ApiResponseDataPostComment",
+              "displayName": "",
+              "id": "#/definitions/8706204",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "StatusCode": {
+                      "type": "integer",
+                      "description": "HTTP status code"
+                    },
+                    "data": {
+                      "$ref": "#/definitions/8706201"
+                    },
+                    "Version": {
+                      "type": "string",
+                      "description": "API version",
+                      "examples": [
+                        "1.0.0"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "StatusCode",
+                    "data",
+                    "Version"
+                  ],
+                  "x-apidog-orders": [
+                    "StatusCode",
+                    "data",
+                    "Version"
+                  ]
+                }
+              },
+              "visibility": "INHERITED",
+              "moduleId": 847686
+            },
+            {
               "name": "UserUpdateParameter",
               "displayName": "",
               "id": "#/definitions/8630358",
@@ -1677,6 +3107,76 @@
                   "x-apidog-orders": [
                     "name",
                     "email"
+                  ]
+                }
+              },
+              "visibility": "INHERITED",
+              "moduleId": 847686
+            },
+            {
+              "name": "ApiResponseListPostComment",
+              "displayName": "",
+              "id": "#/definitions/8706205",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "StatusCode": {
+                      "type": "integer",
+                      "description": "HTTP status code"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/8706201"
+                          }
+                        },
+                        "meta": {
+                          "type": "object",
+                          "properties": {
+                            "Count": {
+                              "type": "integer",
+                              "description": "Number of items in the list"
+                            }
+                          },
+                          "required": [
+                            "Count"
+                          ],
+                          "x-apidog-orders": [
+                            "Count"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "items",
+                        "meta"
+                      ],
+                      "x-apidog-orders": [
+                        "items",
+                        "meta"
+                      ]
+                    },
+                    "Version": {
+                      "type": "string",
+                      "description": "API version",
+                      "examples": [
+                        "1.0.0"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "StatusCode",
+                    "data",
+                    "Version"
+                  ],
+                  "x-apidog-orders": [
+                    "StatusCode",
+                    "data",
+                    "Version"
                   ]
                 }
               },
@@ -3365,6 +4865,2161 @@
           },
           "priority": 2,
           "ordering": 31,
+          "description": "",
+          "preProcessors": [],
+          "postProcessors": [],
+          "children": [],
+          "performanceTestOptions": {},
+          "apiTestDataSets": []
+        },
+        {
+          "steps": [
+            {
+              "name": "Create a new user - initial data",
+              "number": 1,
+              "type": "http",
+              "bind": false,
+              "disable": false,
+              "bindType": "API",
+              "bindId": 20068527,
+              "syncMode": "MANUAL",
+              "httpApiCase": {
+                "id": 28719718,
+                "name": "Create a new user",
+                "method": "post",
+                "path": "/users",
+                "auth": {},
+                "type": "http",
+                "options": {},
+                "parameters": {
+                  "query": [],
+                  "header": [],
+                  "cookie": [],
+                  "path": []
+                },
+                "responseId": 0,
+                "requestBody": {
+                  "parameters": [],
+                  "type": "application/json",
+                  "data": "{\n    \"name\": \"Justin Hackett\",\n    \"email\": \"Sydnie.Hudson48@hotmail.com\"\n}",
+                  "jsonSchema": {
+                    "$ref": "#/definitions/8630357"
+                  },
+                  "generateMode": "auto"
+                },
+                "preProcessors": [
+                  {
+                    "type": "placeholder",
+                    "renderType": "dynamicValueDivider",
+                    "defaultEnable": false,
+                    "enable": false
+                  }
+                ],
+                "postProcessors": [
+                  {
+                    "type": "customScript",
+                    "data": "pm.test(\"Status code is 201\", function () {\n    const { response } = pm;\n\n    if (response.code === 201) {\n        const jsonData = pm.response.json();\n        console.log(jsonData.data.id);\n        pm.variables.set(\"CREATED_USER_ID\", jsonData.data.id);\n        console.log(pm.variables.get(\"CREATED_USER_ID\"));\n    }\n\n    response.to.have.status(201);\n});\n",
+                    "defaultEnable": false,
+                    "enable": true
+                  }
+                ],
+                "advancedSettings": {
+                  "disabledSystemHeaders": {},
+                  "isDefaultUrlEncoding": 3,
+                  "disableUrlEncoding": false
+                },
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "header": [],
+                  "cookie": []
+                },
+                "inheritPreProcessors": {},
+                "inheritPostProcessors": {},
+                "inheritPreProcessorsSnapshot": [],
+                "inheritPostProcessorsSnapshot": [],
+                "moduleId": 847686,
+                "apiId": 20068527
+              }
+            },
+            {
+              "id": "49d545b3-2ef1-4424-867f-942168ffd935",
+              "type": "group",
+              "disable": false,
+              "parameters": {
+                "name": "Post"
+              },
+              "children": [
+                {
+                  "name": "Get all posts",
+                  "number": 5,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215016,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28720722,
+                    "name": "Get all posts",
+                    "method": "get",
+                    "path": "/posts",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": []
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 200\", function () {\n    const { response } = pm;\n\n    if (response.code === 200) {\n        const jsonData = pm.response.json();\n        pm.variables.set(\"CURRENT_POST_COUNT\", jsonData.data.meta.count);\n    }\n\n    pm.response.to.have.status(200);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215016
+                  }
+                },
+                {
+                  "name": "Create a new post - Success",
+                  "number": 2,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215017,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28720725,
+                    "name": "Create a new post",
+                    "method": "post",
+                    "path": "/posts",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": []
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"title\": \"inasmuch harmful event chow\",\n    \"content\": \"Nesciunt tenax voluptatibus ipsa amissio. Abutor virgo aro truculenter cetera vehemens. Curtus turpis adduco villa.\",\n    \"authorUserId\": \"{{CREATED_USER_ID}}\"\n}",
+                      "jsonSchema": {
+                        "$ref": "#/definitions/8706197"
+                      },
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 201\", function () {\n    const { response } = pm;\n\n    if (response.code === 201) {\n        const jsonData = pm.response.json();\n        console.log(jsonData.data.id);\n        pm.variables.set(\"CREATED_POST_ID\", jsonData.data.id);\n        console.log(pm.variables.get(\"CREATED_POST_ID\"));\n\n        pm.variables.set(\"CREATED_POST_TITLE\", jsonData.data.title);\n    }\n\n    response.to.have.status(201);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215017
+                  }
+                },
+                {
+                  "name": "Create a new post - User not found",
+                  "number": 7,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215017,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28721059,
+                    "name": "Create a new post",
+                    "method": "post",
+                    "path": "/posts",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": []
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"title\": \"inasmuch harmful event chow\",\n    \"content\": \"Nesciunt tenax voluptatibus ipsa amissio. Abutor virgo aro truculenter cetera vehemens. Curtus turpis adduco villa.\",\n    \"authorUserId\": \"00000000-0000-0000-0000-000000000000\"\n}",
+                      "jsonSchema": {
+                        "$ref": "#/definitions/8706197"
+                      },
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 400\", function () {\n    const { response } = pm;\n\n    response.to.have.status(400);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215017
+                  }
+                },
+                {
+                  "name": "Get all posts",
+                  "number": 8,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215016,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28722105,
+                    "name": "Get all posts",
+                    "method": "get",
+                    "path": "/posts",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": []
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 200\", function () {\n  pm.response.to.have.status(200);\n});\n\npm.test(\"Post Count should be increased\", function () {\n  const { response } = pm;\n\n  const jsonData = response.json();\n  const currentCount = jsonData.data.meta.count;\n  const previousCount = parseInt(pm.variables.get(\"CURRENT_POST_COUNT\"));\n\n  pm.expect(currentCount).to.eql(previousCount + 1);\n  pm.variables.set(\"CURRENT_POST_COUNT\", currentCount);\n});\n\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215016
+                  }
+                },
+                {
+                  "name": "Get post by ID",
+                  "number": 3,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215018,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28720724,
+                    "name": "Get post by ID",
+                    "method": "get",
+                    "path": "/posts/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "{{CREATED_POST_ID}}",
+                          "type": "string",
+                          "description": "Post ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\npm.test(\"Id must be same with created one before\", function () {\n    const jsonData = pm.response.json();\n\n    const postId = pm.variables.get(\"CREATED_POST_ID\")\n    pm.expect(jsonData.data.id).to.eql(postId);\n});\n\npm.test(\"Title must be same with created one before\", function () {\n    const jsonData = pm.response.json();\n\n    const postTitle = pm.variables.get(\"CREATED_POST_TITLE\")\n    pm.expect(jsonData.data.title).to.eql(postTitle);\n});\n\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215018
+                  }
+                },
+                {
+                  "name": "Get post by ID - Post Not found",
+                  "number": 23,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215018,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723617,
+                    "name": "Get post by ID",
+                    "method": "get",
+                    "path": "/posts/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "00000000-0000-0000-0000-000000000000",
+                          "type": "string",
+                          "description": "Post ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 404\", function () {\n    pm.response.to.have.status(404);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215018
+                  }
+                },
+                {
+                  "name": "Update post",
+                  "number": 4,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215019,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28720723,
+                    "name": "Update post",
+                    "method": "patch",
+                    "path": "/posts/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "enable": true,
+                          "isDelete": false,
+                          "value": "{{CREATED_POST_ID}}",
+                          "type": "string",
+                          "description": "Post ID",
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"title\": \"boring smoothly instead toward phooey internalise\",\n    \"content\": \"Sunt curiositas tutamen vestigium absorbeo cruentus. Ait asper cras pecco timor depraedor illum ulterius calamitas. Sto soluta vere abundans adflicto umquam.\"\n}",
+                      "jsonSchema": {
+                        "$ref": "#/definitions/8706198"
+                      },
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 200\", function () {\n  if (pm.response.code === 200) {\n    const requestJson = JSON.parse(pm.request.body.raw);\n    pm.variables.set(\"CREATED_POST_TITLE\", requestJson.title);\n  }\n\n  pm.response.to.have.status(200);\n});\n\npm.test(\"Title must be updated\", function () {\n    const jsonData = pm.response.json();\n\n    const title = pm.variables.get(\"CREATED_POST_TITLE\");\n    const currentTittle = jsonData.data.title;\n    pm.expect(currentTittle).to.eql(title);\n});\n\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215019
+                  }
+                },
+                {
+                  "name": "Get post by ID",
+                  "number": 26,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215018,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723969,
+                    "name": "Get post by ID",
+                    "method": "get",
+                    "path": "/posts/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "{{CREATED_POST_ID}}",
+                          "type": "string",
+                          "description": "Post ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\npm.test(\"Title must be same with the updated one before\", function () {\n    const jsonData = pm.response.json();\n\n    const postTitle = pm.variables.get(\"CREATED_POST_TITLE\")\n    pm.expect(jsonData.data.title).to.eql(postTitle);\n});\n\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215018
+                  }
+                },
+                {
+                  "name": "Update post - post not found",
+                  "number": 9,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215019,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723024,
+                    "name": "Update post",
+                    "method": "patch",
+                    "path": "/posts/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "00000000-0000-0000-0000-000000000000",
+                          "type": "string",
+                          "description": "Post ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"title\": \"boring smoothly instead toward phooey internalise\",\n    \"content\": \"Sunt curiositas tutamen vestigium absorbeo cruentus. Ait asper cras pecco timor depraedor illum ulterius calamitas. Sto soluta vere abundans adflicto umquam.\"\n}",
+                      "jsonSchema": {
+                        "$ref": "#/definitions/8706198"
+                      },
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 404\", function () {\n  pm.response.to.have.status(404);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215019
+                  }
+                },
+                {
+                  "name": "Delete post",
+                  "number": 6,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215020,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28720721,
+                    "name": "Delete post",
+                    "method": "delete",
+                    "path": "/posts/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "{{CREATED_POST_ID}}",
+                          "type": "string",
+                          "description": "Post ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 200\", function () {\n  pm.response.to.have.status(200);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215020
+                  }
+                },
+                {
+                  "name": "Get post by ID",
+                  "number": 10,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215018,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723042,
+                    "name": "Get post by ID",
+                    "method": "get",
+                    "path": "/posts/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "{{CREATED_POST_ID}}",
+                          "type": "string",
+                          "description": "Post ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 404\", function () {\n    pm.response.to.have.status(404);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215018
+                  }
+                },
+                {
+                  "name": "Delete post - post not found",
+                  "number": 11,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215020,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723045,
+                    "name": "Delete post",
+                    "method": "delete",
+                    "path": "/posts/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "00000000-0000-0000-0000-000000000000",
+                          "type": "string",
+                          "description": "Post ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 404\", function () {\n  pm.response.to.have.status(404);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215020
+                  }
+                }
+              ],
+              "isOpen": false,
+              "number": 12
+            },
+            {
+              "name": "Create a new post - initial data",
+              "number": 19,
+              "type": "http",
+              "bind": false,
+              "disable": false,
+              "bindType": "API",
+              "bindId": 20215017,
+              "syncMode": "MANUAL",
+              "httpApiCase": {
+                "id": 28723282,
+                "name": "Create a new post",
+                "method": "post",
+                "path": "/posts",
+                "auth": {},
+                "type": "http",
+                "options": {},
+                "parameters": {
+                  "query": [],
+                  "header": [],
+                  "cookie": [],
+                  "path": []
+                },
+                "responseId": 0,
+                "requestBody": {
+                  "parameters": [],
+                  "type": "application/json",
+                  "data": "{\n    \"title\": \"inasmuch harmful event chow\",\n    \"content\": \"Nesciunt tenax voluptatibus ipsa amissio. Abutor virgo aro truculenter cetera vehemens. Curtus turpis adduco villa.\",\n    \"authorUserId\": \"{{CREATED_USER_ID}}\"\n}",
+                  "jsonSchema": {
+                    "$ref": "#/definitions/8706197"
+                  },
+                  "generateMode": "normal"
+                },
+                "preProcessors": [
+                  {
+                    "type": "placeholder",
+                    "renderType": "dynamicValueDivider",
+                    "defaultEnable": false,
+                    "enable": false
+                  }
+                ],
+                "postProcessors": [
+                  {
+                    "type": "customScript",
+                    "data": "pm.test(\"Status code is 201\", function () {\n    const { response } = pm;\n\n    if (response.code === 201) {\n        const jsonData = pm.response.json();\n        pm.variables.set(\"CREATED_POST_ID\", jsonData.data.id);\n\n        pm.variables.set(\"CREATED_POST_TITLE\", jsonData.data.title);\n    }\n\n    response.to.have.status(201);\n});\n",
+                    "defaultEnable": false,
+                    "enable": true
+                  }
+                ],
+                "advancedSettings": {
+                  "disabledSystemHeaders": {},
+                  "isDefaultUrlEncoding": 3,
+                  "disableUrlEncoding": false
+                },
+                "commonParameters": {
+                  "query": [],
+                  "body": [],
+                  "header": [],
+                  "cookie": []
+                },
+                "inheritPreProcessors": {},
+                "inheritPostProcessors": {},
+                "inheritPreProcessorsSnapshot": [],
+                "inheritPostProcessorsSnapshot": [],
+                "moduleId": 847686,
+                "apiId": 20215017
+              }
+            },
+            {
+              "id": "e6311536-d46d-4909-9305-551ac78c2f4a",
+              "type": "group",
+              "disable": false,
+              "parameters": {
+                "name": "Comment"
+              },
+              "children": [
+                {
+                  "name": "Get all post comments",
+                  "number": 20,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215021,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723580,
+                    "name": "Get all post comments",
+                    "method": "get",
+                    "path": "/posts/comments",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": []
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 200\", function () {\n    const { response } = pm;\n\n    if (response.code === 200) {\n        const jsonData = pm.response.json();\n        pm.variables.set(\"CURRENT_POST_COMMENT_COUNT\", jsonData.data.meta.count);\n    }\n\n    pm.response.to.have.status(200);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215021
+                  }
+                },
+                {
+                  "name": "Create a new post comment - Success",
+                  "number": 15,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215022,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723236,
+                    "name": "Create a new post comment",
+                    "method": "post",
+                    "path": "/posts/comments",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": []
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"content\": \"Praesentium cito villa appono tutis. Celer asporto arcesso cohibeo spiritus solio. Vulnero causa curatio.\",\n    \"authorUserId\": \"{{CREATED_USER_ID}}\",\n    \"postId\": \"{{CREATED_POST_ID}}\"\n}",
+                      "jsonSchema": {
+                        "$ref": "#/definitions/8706202"
+                      },
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 201\", function () {\n    const { response } = pm;\n\n    if (response.code === 201) {\n        const jsonData = pm.response.json();\n        console.log(jsonData.data.id);\n        pm.variables.set(\"CREATED_POST_COMMENT_ID\", jsonData.data.id);\n        console.log(pm.variables.get(\"CREATED_POST_COMMENT_ID\"));\n\n        pm.variables.set(\"CREATED_POST_COMMENT_CONTENT\", jsonData.data.content);\n    }\n\n    response.to.have.status(201);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215022
+                  }
+                },
+                {
+                  "name": "Create a new post comment - User not found",
+                  "number": 21,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215022,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723583,
+                    "name": "Create a new post comment",
+                    "method": "post",
+                    "path": "/posts/comments",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": []
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"content\": \"Praesentium cito villa appono tutis. Celer asporto arcesso cohibeo spiritus solio. Vulnero causa curatio.\",\n    \"authorUserId\": \"00000000-0000-0000-0000-000000000000\",\n    \"postId\": \"{{CREATED_POST_ID}}\"\n}",
+                      "jsonSchema": {
+                        "$ref": "#/definitions/8706202"
+                      },
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 400\", function () {\n    const { response } = pm;\n\n    response.to.have.status(400);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215022
+                  }
+                },
+                {
+                  "name": "Create a new post comment - Post not found",
+                  "number": 22,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215022,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723586,
+                    "name": "Create a new post comment",
+                    "method": "post",
+                    "path": "/posts/comments",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": []
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"content\": \"Praesentium cito villa appono tutis. Celer asporto arcesso cohibeo spiritus solio. Vulnero causa curatio.\",\n    \"authorUserId\": \"{{CREATED_USER_ID}}\",\n    \"postId\": \"00000000-0000-0000-0000-000000000000\"\n}",
+                      "jsonSchema": {
+                        "$ref": "#/definitions/8706202"
+                      },
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 400\", function () {\n    const { response } = pm;\n    response.to.have.status(400);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215022
+                  }
+                },
+                {
+                  "name": "Get all post comments",
+                  "number": 14,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215021,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723237,
+                    "name": "Get all post comments",
+                    "method": "get",
+                    "path": "/posts/comments",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": []
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 200\", function () {\n  pm.response.to.have.status(200);\n});\n\npm.test(\"Post Count should be increased\", function () {\n  const { response } = pm;\n\n  const jsonData = response.json();\n  const currentCount = jsonData.data.meta.count;\n  const previousCount = parseInt(pm.variables.get(\"CURRENT_POST_COMMENT_COUNT\"));\n\n  pm.expect(currentCount).to.eql(previousCount + 1);\n  pm.variables.set(\"CURRENT_POST_COMMENT_COUNT\", currentCount);\n});\n\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215021
+                  }
+                },
+                {
+                  "name": "Get post comment by ID",
+                  "number": 16,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215023,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723235,
+                    "name": "Get post comment by ID",
+                    "method": "get",
+                    "path": "/posts/comments/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "enable": true,
+                          "isDelete": false,
+                          "value": "{{CREATED_POST_COMMENT_ID}}",
+                          "type": "string",
+                          "description": "Post comment ID",
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 200\", function () {\n  pm.response.to.have.status(200);\n});\n\npm.test(\"Id must be same with created one before\", function () {\n    const jsonData = pm.response.json();\n\n    const id = pm.variables.get(\"CREATED_POST_COMMENT_ID\")\n    pm.expect(jsonData.data.id).to.eql(id);\n});\n\npm.test(\"Content must be same with created one before\", function () {\n    const jsonData = pm.response.json();\n\n    const content = pm.variables.get(\"CREATED_POST_COMMENT_CONTENT\")\n    pm.expect(jsonData.data.content).to.eql(content);\n});",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215023
+                  }
+                },
+                {
+                  "name": "Get post comment by ID - Post Not found",
+                  "number": 24,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215023,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723668,
+                    "name": "Get post comment by ID",
+                    "method": "get",
+                    "path": "/posts/comments/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "00000000-0000-0000-0000-000000000000",
+                          "type": "string",
+                          "description": "Post comment ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 404\", function () {\n  pm.response.to.have.status(404);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215023
+                  }
+                },
+                {
+                  "name": "Update post comment",
+                  "number": 17,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215024,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723234,
+                    "name": "Update post comment",
+                    "method": "patch",
+                    "path": "/posts/comments/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "{{CREATED_POST_COMMENT_ID}}",
+                          "type": "string",
+                          "description": "Post comment ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"content\": \"Velum curtus curvo baiulus voluptate tergo attollo. Ascit defendo abundans vesica ascisco accusantium asper comis mollitia. Cenaculum utrum cur credo valens tumultus impedit officiis allatus cedo.\"\n}",
+                      "jsonSchema": {
+                        "$ref": "#/definitions/8706203"
+                      },
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 200\", function () {\n  if (pm.response.code === 200) {\n    const requestJson = JSON.parse(pm.request.body.raw);\n    pm.variables.set(\"CREATED_POST_COMMENT_CONTENT\", requestJson.content);\n  }\n\n  pm.response.to.have.status(200);\n});\n\npm.test(\"Content must be updated\", function () {\n    const jsonData = pm.response.json();\n\n    const content = pm.variables.get(\"CREATED_POST_COMMENT_CONTENT\");\n    const currentContent = jsonData.data.content;\n    pm.expect(currentContent).to.eql(content);\n});\n\n\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215024
+                  }
+                },
+                {
+                  "name": "Get post comment by ID",
+                  "number": 27,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215023,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723972,
+                    "name": "Get post comment by ID",
+                    "method": "get",
+                    "path": "/posts/comments/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "{{CREATED_POST_COMMENT_ID}}",
+                          "type": "string",
+                          "description": "Post comment ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 200\", function () {\n  pm.response.to.have.status(200);\n});\n\npm.test(\"Content must be same with updated one before\", function () {\n    const jsonData = pm.response.json();\n\n    const content = pm.variables.get(\"CREATED_POST_COMMENT_CONTENT\")\n    pm.expect(jsonData.data.content).to.eql(content);\n});",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215023
+                  }
+                },
+                {
+                  "name": "Update post comment - Post not found",
+                  "number": 25,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215024,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723951,
+                    "name": "Update post comment",
+                    "method": "patch",
+                    "path": "/posts/comments/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "00000000-0000-0000-0000-000000000000",
+                          "type": "string",
+                          "description": "Post comment ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "application/json",
+                      "data": "{\n    \"content\": \"Velum curtus curvo baiulus voluptate tergo attollo. Ascit defendo abundans vesica ascisco accusantium asper comis mollitia. Cenaculum utrum cur credo valens tumultus impedit officiis allatus cedo.\",\n    \"authorUserId\": \"{{CREATED_USER_ID}}\",\n    \"postId\": \"{{CREATED_POST_ID}}\"\n}",
+                      "jsonSchema": {
+                        "$ref": "#/definitions/8706203"
+                      },
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 404\", function () {\n  pm.response.to.have.status(404);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215024
+                  }
+                },
+                {
+                  "name": "Delete post comment",
+                  "number": 18,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215025,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28723233,
+                    "name": "Delete post comment",
+                    "method": "delete",
+                    "path": "/posts/comments/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "{{CREATED_POST_COMMENT_ID}}",
+                          "type": "string",
+                          "description": "Post comment ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 200\", function () {\n  pm.response.to.have.status(200);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215025
+                  }
+                },
+                {
+                  "name": "Get post comment by ID",
+                  "number": 28,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215023,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28724023,
+                    "name": "Get post comment by ID",
+                    "method": "get",
+                    "path": "/posts/comments/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "{{CREATED_POST_COMMENT_ID}}",
+                          "type": "string",
+                          "description": "Post comment ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 404\", function () {\n  pm.response.to.have.status(404);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215023
+                  }
+                },
+                {
+                  "name": "Delete post comment- Post comment not found",
+                  "number": 29,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215025,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28724113,
+                    "name": "Delete post comment",
+                    "method": "delete",
+                    "path": "/posts/comments/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "00000000-0000-0000-0000-000000000000",
+                          "type": "string",
+                          "description": "Post comment ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 404\", function () {\n  pm.response.to.have.status(404);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 3,
+                      "disableUrlEncoding": false
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215025
+                  }
+                }
+              ],
+              "isOpen": true,
+              "number": 13
+            },
+            {
+              "id": "eaa9f5a7-4369-483d-b6bb-7488ef6f12e2",
+              "type": "group",
+              "disable": false,
+              "parameters": {
+                "name": "Clean Data"
+              },
+              "children": [
+                {
+                  "name": "Delete post",
+                  "number": 32,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20215020,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28724317,
+                    "name": "Delete post",
+                    "method": "delete",
+                    "path": "/posts/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "{{CREATED_POST_ID}}",
+                          "type": "string",
+                          "description": "Post ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 200\", function () {\n  pm.response.to.have.status(200);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20215020
+                  }
+                },
+                {
+                  "name": "Delete user",
+                  "number": 31,
+                  "type": "http",
+                  "bind": false,
+                  "disable": false,
+                  "bindType": "API",
+                  "bindId": 20069348,
+                  "syncMode": "MANUAL",
+                  "httpApiCase": {
+                    "id": 28724114,
+                    "name": "Delete user",
+                    "method": "delete",
+                    "path": "/users/{id}",
+                    "auth": {},
+                    "type": "http",
+                    "options": {},
+                    "parameters": {
+                      "query": [],
+                      "header": [],
+                      "cookie": [],
+                      "path": [
+                        {
+                          "id": "id#0",
+                          "name": "id",
+                          "value": "{{CREATED_USER_ID}}",
+                          "type": "string",
+                          "description": "User ID",
+                          "enable": true,
+                          "isDelete": false,
+                          "relatedName": "id"
+                        }
+                      ]
+                    },
+                    "responseId": 0,
+                    "requestBody": {
+                      "parameters": [],
+                      "type": "none",
+                      "data": "",
+                      "generateMode": "normal"
+                    },
+                    "preProcessors": [
+                      {
+                        "type": "placeholder",
+                        "renderType": "dynamicValueDivider",
+                        "defaultEnable": false,
+                        "enable": false
+                      }
+                    ],
+                    "postProcessors": [
+                      {
+                        "type": "customScript",
+                        "data": "pm.test(\"Status code is 200\", function () {\n  pm.response.to.have.status(200);\n});\n",
+                        "defaultEnable": false,
+                        "enable": true
+                      }
+                    ],
+                    "advancedSettings": {
+                      "disabledSystemHeaders": {},
+                      "isDefaultUrlEncoding": 1
+                    },
+                    "commonParameters": {
+                      "query": [],
+                      "body": [],
+                      "header": [],
+                      "cookie": []
+                    },
+                    "inheritPreProcessors": {},
+                    "inheritPostProcessors": {},
+                    "inheritPreProcessorsSnapshot": [],
+                    "inheritPostProcessorsSnapshot": [],
+                    "moduleId": 847686,
+                    "apiId": 20069348
+                  }
+                }
+              ],
+              "isOpen": true,
+              "number": 30
+            }
+          ],
+          "id": 1361149,
+          "name": "Post & Comment",
+          "tags": [],
+          "options": {},
+          "priority": 2,
+          "ordering": 41,
           "description": "",
           "preProcessors": [],
           "postProcessors": [],
