@@ -1,4 +1,5 @@
 using System.Net;
+using System.Threading.Tasks;
 using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Dtos.Results;
 using dotnet_smk_telkom_2025.Infrastructure.Dtos;
@@ -24,44 +25,44 @@ public class PostCommentController : ControllerBase
   }
 
   [HttpGet]
-  public ApiResponse GetAll()
+  public async Task<ApiResponse> GetAll()
   {
-    var results = _postCommentService.GetAll();
+    var results = await _postCommentService.GetAll();
     return new ApiResponseList<PostCommentResult>(results);
   }
 
   [HttpGet("{id}")]
-  public ApiResponse FindOneById(Guid id)
+  public async Task<ApiResponse> FindOneById(Guid id)
   {
-    var result = _postCommentService.FindOneById(id);
+    var result = await _postCommentService.FindOneById(id);
     return new ApiResponseData<PostCommentResult>(result);
   }
 
   [HttpPost]
-  public ApiResponse Create(
+  public async Task<ApiResponse> Create(
     [FromBody] PostCommentCreateParameter parameter
   )
   {
-    var result = _postCommentService.Create(parameter);
+    var result = await _postCommentService.Create(parameter);
     return new ApiResponseData<PostCommentResult>(result, HttpStatusCode.Created);
   }
 
   [HttpPatch("{id}")]
-  public ApiResponse Update(
+  public async Task<ApiResponse> Update(
     Guid id,
     [FromBody] PostCommentUpdateParameter parameter
   )
   {
-    var result = _postCommentService.Update(id, parameter);
+    var result = await _postCommentService.Update(id, parameter);
     return new ApiResponseData<PostCommentResult>(result);
   }
 
   [HttpDelete("{id}")]
-  public ApiResponse Delete(
+  public async Task<ApiResponse> Delete(
     Guid id
   )
   {
-    _postCommentService.Delete(id);
+    await _postCommentService.Delete(id);
 
     return new ApiResponseData<PostCommentResult>(null);
   }
