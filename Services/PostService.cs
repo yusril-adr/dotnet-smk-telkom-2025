@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Dtos.Results;
 using dotnet_smk_telkom_2025.Infrastructure.Exceptions;
@@ -22,16 +23,16 @@ public class PostService
     _userQueryRepository = userQueryRepository;
   }
 
-  public List<PostResult> GetAll()
+  public async Task<List<PostResult>> GetAll()
   {
-    var posts = _postQueryRepository.FindAll();
+    var posts = await _postQueryRepository.FindAll();
     var results = PostResult.MapModels(posts);
     return results;
   }
 
-  public PostResult FindOneById(Guid id)
+  public async Task<PostResult> FindOneById(Guid id)
   {
-    var post = _postQueryRepository.FindOneById(id);
+    var post = await _postQueryRepository.FindOneById(id);
     if (post == null)
     {
       throw new NotFoundException("Post not found");
@@ -40,51 +41,51 @@ public class PostService
     return result;
   }
 
-  public PostResult Create(
+  public async Task<PostResult> Create(
     PostCreateParameter parameter
   )
   {
-    var authorUser = _userQueryRepository.FindOneById(parameter.AuthorUserId);
+    var authorUser = await _userQueryRepository.FindOneById(parameter.AuthorUserId);
     if (authorUser == null)
     {
       throw new BadParameterException("Author user not found");
     }
 
     var post = PostCreateParameter.ToModel(parameter);
-    post = _postStoreRepository.Create(post);
+    post = await _postStoreRepository.Create(post);
 
     var result = new PostResult(post);
     return result;
   }
 
-  public PostResult Update(
+  public async Task<PostResult> Update(
     Guid id,
     PostUpdateParameter parameter
   )
   {
-    var post = _postQueryRepository.FindOneById(id);
+    var post = await _postQueryRepository.FindOneById(id);
     if (post == null)
     {
       throw new NotFoundException("Post not found");
     }
 
     post = PostUpdateParameter.ToModel(post, parameter);
-    post = _postStoreRepository.UpdateById(id, post);
+    post = await _postStoreRepository.UpdateById(id, post);
 
     var result = new PostResult(post);
     return result;
   }
 
-  public void Delete(
+  public async Task Delete(
     Guid id
   )
   {
-    var post = _postQueryRepository.FindOneById(id);
+    var post = await _postQueryRepository.FindOneById(id);
     if (post == null)
     {
       throw new NotFoundException("Post not found");
     }
 
-    _postStoreRepository.DeleteById(id);
+    await _postStoreRepository.Delete(post);
   }
 }

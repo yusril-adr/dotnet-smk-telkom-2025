@@ -1,4 +1,5 @@
 using System.Net;
+using System.Threading.Tasks;
 using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Dtos.Results;
 using dotnet_smk_telkom_2025.Infrastructure.Dtos;
@@ -24,44 +25,44 @@ public class PostController : ControllerBase
   }
 
   [HttpGet]
-  public ApiResponse GetAll()
+  public async Task<ApiResponse> GetAll()
   {
-    var results = _postService.GetAll();
+    var results = await _postService.GetAll();
     return new ApiResponseList<PostResult>(results);
   }
 
   [HttpGet("{id}")]
-  public ApiResponse FindOneById(Guid id)
+  public async Task<ApiResponse> FindOneById(Guid id)
   {
-    var result = _postService.FindOneById(id);
+    var result = await _postService.FindOneById(id);
     return new ApiResponseData<PostResult>(result);
   }
 
   [HttpPost]
-  public ApiResponse Create(
+  public async Task<ApiResponse> Create(
     [FromBody] PostCreateParameter parameter
   )
   {
-    var result = _postService.Create(parameter);
+    var result = await _postService.Create(parameter);
     return new ApiResponseData<PostResult>(result, HttpStatusCode.Created);
   }
 
   [HttpPatch("{id}")]
-  public ApiResponse Update(
+  public async Task<ApiResponse> Update(
     Guid id,
     [FromBody] PostUpdateParameter parameter
   )
   {
-    var result = _postService.Update(id, parameter);
+    var result = await _postService.Update(id, parameter);
     return new ApiResponseData<PostResult>(result);
   }
 
   [HttpDelete("{id}")]
-  public ApiResponse Delete(
+  public async Task<ApiResponse> Delete(
     Guid id
   )
   {
-    _postService.Delete(id);
+    await _postService.Delete(id);
 
     return new ApiResponseData<PostResult>(null);
   }

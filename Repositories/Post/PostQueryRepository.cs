@@ -1,26 +1,27 @@
 using dotnet_smk_telkom_2025.Infrastructure.Databases;
 using dotnet_smk_telkom_2025.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_smk_telkom_2025.Repositories;
 
 public class PostQueryRepository
 {
-  public InMemoryDbContext InMemoryDb { get; set; }
+  public readonly SQLServerDBContext SQLServerDb;
 
   public PostQueryRepository(
-    InMemoryDbContext inMemoryDb
+    SQLServerDBContext sqlServerDb
   )
   {
-    InMemoryDb = inMemoryDb;
+    SQLServerDb = sqlServerDb;
   }
 
-  public List<Post> FindAll()
+  public async Task<List<Post>> FindAll()
   {
-    return InMemoryDb.Posts;
+    return await SQLServerDb.Posts.ToListAsync();
   }
 
-  public Post FindOneById(Guid id)
+  public async Task<Post> FindOneById(Guid id)
   {
-    return InMemoryDb.Posts.FirstOrDefault(u => u.Id == id);
+    return await SQLServerDb.Posts.FirstOrDefaultAsync(u => u.Id == id);
   }
 }
