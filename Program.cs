@@ -2,12 +2,18 @@ using dotnet_smk_telkom_2025.Infrastructure.Databases;
 using dotnet_smk_telkom_2025.Infrastructure.Middlewares;
 using dotnet_smk_telkom_2025.Repositories;
 using dotnet_smk_telkom_2025.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddSingleton<InMemoryDbContext>();
+builder.Services.AddDbContext<SQLServerDBContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration["DB:SQLServer:ConnectionString"]);
+});
+
 /* ------------------------------ Repositories ------------------------------ */
 builder.Services.AddScoped<UserQueryRepository>();
 builder.Services.AddScoped<UserStoreRepository>();
