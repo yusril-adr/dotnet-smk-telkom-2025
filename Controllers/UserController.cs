@@ -24,44 +24,44 @@ public class UserController : ControllerBase
   }
 
   [HttpGet]
-  public ApiResponse GetAll()
+  public async Task<ApiResponse> GetAll()
   {
-    var results = _userService.GetAll();
+    var results = await _userService.GetAll();
     return new ApiResponseList<UserResult>(results);
   }
 
   [HttpGet("{id}")]
-  public ApiResponse FindOneById(Guid id)
+  public async Task<ApiResponse> FindOneById(Guid id)
   {
-    var result = _userService.FindOneById(id);
+    var result = await _userService.FindOneById(id);
     return new ApiResponseData<UserResult>(result);
   }
 
   [HttpPost]
-  public ApiResponse Create(
+  public async Task<ApiResponse> Create(
     [FromBody] UserCreateParameter parameter
   )
   {
-    var result = _userService.Create(parameter);
+    var result = await _userService.Create(parameter);
     return new ApiResponseData<UserResult>(result, HttpStatusCode.Created);
   }
 
   [HttpPatch("{id}")]
-  public ApiResponse Update(
+  public async Task<ApiResponse> Update(
     Guid id,
     [FromBody] UserUpdateParameter parameter
   )
   {
-    var result = _userService.Update(id, parameter);
+    var result = await _userService.Update(id, parameter);
     return new ApiResponseData<UserResult>(result);
   }
 
   [HttpDelete("{id}")]
-  public ApiResponse Delete(
+  public async Task<ApiResponse> Delete(
     Guid id
   )
   {
-    _userService.Delete(id);
+    await _userService.Delete(id);
 
     return new ApiResponseData<UserResult>(null);
   }

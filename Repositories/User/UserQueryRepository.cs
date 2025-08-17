@@ -1,26 +1,27 @@
 using dotnet_smk_telkom_2025.Infrastructure.Databases;
 using dotnet_smk_telkom_2025.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_smk_telkom_2025.Repositories;
 
 public class UserQueryRepository
 {
-  public InMemoryDbContext InMemoryDb { get; set; }
+  public readonly SQLServerDBContext SQLServerDB;
 
   public UserQueryRepository(
-    InMemoryDbContext inMemoryDb
+    SQLServerDBContext sqlServerDb
   )
   {
-    InMemoryDb = inMemoryDb;
+    SQLServerDB = sqlServerDb;
   }
 
-  public List<User> FindAll()
+  public async Task<List<User>> FindAll()
   {
-    return InMemoryDb.Users;
+    return await SQLServerDB.Users.ToListAsync();
   }
 
-  public User FindOneById(Guid id)
+  public async Task<User> FindOneById(Guid id)
   {
-    return InMemoryDb.Users.FirstOrDefault(u => u.Id == id);
+    return await SQLServerDB.Users.FirstOrDefaultAsync(u => u.Id == id);
   }
 }

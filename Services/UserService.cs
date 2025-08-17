@@ -18,16 +18,16 @@ public class UserService
     _userStoreRepository = userStoreRepository;
   }
 
-  public List<UserResult> GetAll()
+  public async Task<List<UserResult>> GetAll()
   {
-    var users = _userQueryRepository.FindAll();
+    var users = await _userQueryRepository.FindAll();
     var results = UserResult.MapModels(users);
     return results;
   }
 
-  public UserResult FindOneById(Guid id)
+  public async Task<UserResult> FindOneById(Guid id)
   {
-    var user = _userQueryRepository.FindOneById(id);
+    var user = await _userQueryRepository.FindOneById(id);
     if (user == null)
     {
       throw new NotFoundException("User not found");
@@ -36,44 +36,44 @@ public class UserService
     return result;
   }
 
-  public UserResult Create(
+  public async Task<UserResult> Create(
     UserCreateParameter parameter
   )
   {
     var user = UserCreateParameter.ToModel(parameter);
-    user = _userStoreRepository.Create(user);
+    user = await _userStoreRepository.Create(user);
 
     var result = new UserResult(user);
     return result;
   }
 
-  public UserResult Update(
+  public async Task<UserResult> Update(
     Guid id,
     UserUpdateParameter parameter
   )
   {
-    var user = _userQueryRepository.FindOneById(id);
+    var user = await _userQueryRepository.FindOneById(id);
     if (user == null)
     {
       throw new NotFoundException("User not found");
     }
     user = UserUpdateParameter.ToModel(user, parameter);
-    user = _userStoreRepository.UpdateById(id, user);
+    user = await _userStoreRepository.UpdateById(id, user);
 
     var result = new UserResult(user);
     return result;
   }
 
-  public void Delete(
+  public async Task Delete(
     Guid id
   )
   {
-    var user = _userQueryRepository.FindOneById(id);
+    var user = await _userQueryRepository.FindOneById(id);
     if (user == null)
     {
       throw new NotFoundException("User not found");
     }
 
-    _userStoreRepository.DeleteById(id);
+    await _userStoreRepository.Delete(user);
   }
 }
