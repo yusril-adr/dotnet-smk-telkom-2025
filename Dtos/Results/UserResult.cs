@@ -8,6 +8,10 @@ public class UserResult
   public string Name { get; set; }
   public string Email { get; set; }
 
+  // Needed for deserialization
+  public UserResult() { }
+
+
   public UserResult(
     User user
   )

@@ -686,6 +686,89 @@
         }
       }
     },
+    "/auth/login/password": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Login with email and password",
+        "description": "Authenticates a user with email and password credentials",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthLoginParameter"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDataAuthLogin"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - invalid email or password",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login/token": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Login with access token",
+        "description": "Authenticates a user using an existing access token from Authorization header",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token validation successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDataUser"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - invalid or expired token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/posts/comments/{id}": {
       "get": {
         "tags": ["PostComments"],
@@ -845,6 +928,14 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "JWT token for authentication"
+      }
+    },
     "schemas": {
       "Question1Response": {
         "type": "object",
@@ -1000,9 +1091,13 @@
             "type": "string",
             "format": "email",
             "description": "User's email address"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password"
           }
         },
-        "required": ["name", "email"]
+        "required": ["name", "email", "password"]
       },
       "UserUpdateParameter": {
         "type": "object",
@@ -1017,6 +1112,10 @@
             "type": "string",
             "format": "email",
             "description": "User's email address"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password"
           }
         }
       },
@@ -1304,6 +1403,49 @@
         },
         "required": ["StatusCode", "data", "Version"]
       },
+      "AuthLoginParameter": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "User's email address"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password"
+          }
+        },
+        "required": ["email", "password"]
+      },
+      "AuthLoginResult": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "description": "JWT access token for authentication"
+          }
+        },
+        "required": ["accessToken"]
+      },
+      "ApiResponseDataAuthLogin": {
+        "type": "object",
+        "properties": {
+          "StatusCode": {
+            "type": "integer",
+            "description": "HTTP status code"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AuthLoginResult"
+          },
+          "Version": {
+            "type": "string",
+            "description": "API version",
+            "example": "1.0.0"
+          }
+        },
+        "required": ["StatusCode", "data", "Version"]
+      },
       "ErrorResponse": {
         "type": "object",
         "properties": {
@@ -1332,6 +1474,10 @@
     }
   },
   "tags": [
+    {
+      "name": "Auth",
+      "description": "Authentication endpoints"
+    },
     {
       "name": "Questions",
       "description": "Programming exercise endpoints"

@@ -24,4 +24,9 @@ public class UserQueryRepository
   {
     return await SQLServerDB.Users.FirstOrDefaultAsync(u => u.Id == id);
   }
+
+  public async Task<User> FindOneByEmail(string email)
+  {
+    return await SQLServerDB.Users.FirstOrDefaultAsync(u => u.Email == email);
+  }
 }
