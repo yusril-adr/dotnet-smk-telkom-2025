@@ -1196,7 +1196,9 @@
             "description": "Author user ID"
           },
           "authorUser": {
-            "$ref": "#/components/schemas/UserResult"
+            "$ref": "#/components/schemas/UserResult",
+            "nullable": true,
+            "description": "Author user information (nullable)"
           }
         },
         "required": ["id", "title", "content", "authorUserId"]
@@ -1211,14 +1213,9 @@
           "content": {
             "type": "string",
             "description": "Post content"
-          },
-          "authorUserId": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Author user ID"
           }
         },
-        "required": ["title", "content", "authorUserId"]
+        "required": ["title", "content"]
       },
       "PostUpdateParameter": {
         "type": "object",
@@ -1311,10 +1308,14 @@
             "description": "Post ID"
           },
           "authorUser": {
-            "$ref": "#/components/schemas/UserResult"
+            "$ref": "#/components/schemas/UserResult",
+            "nullable": true,
+            "description": "Author user information (nullable)"
           },
           "post": {
-            "$ref": "#/components/schemas/PostResult"
+            "$ref": "#/components/schemas/PostResult",
+            "nullable": true,
+            "description": "Post information (nullable)"
           }
         },
         "required": ["id", "content", "authorUserId", "postId"]
@@ -1326,18 +1327,13 @@
             "type": "string",
             "description": "Comment content"
           },
-          "authorUserId": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Author user ID"
-          },
           "postId": {
             "type": "string",
             "format": "uuid",
             "description": "Post ID"
           }
         },
-        "required": ["content", "authorUserId", "postId"]
+        "required": ["content", "postId"]
       },
       "PostCommentUpdateParameter": {
         "type": "object",
