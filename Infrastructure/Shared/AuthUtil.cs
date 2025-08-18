@@ -60,7 +60,9 @@ public class AuthUtil(
 
   public ClaimsPrincipal ClaimPrincipalWithJson(dynamic user)
   {
-    var userObject = (Dictionary<string, object>)JsonSerializer.Deserialize<Dictionary<string, object>>(user);
+    var userObject = (Dictionary<string, object>)JsonSerializer.Deserialize<Dictionary<string, object>>(
+      JsonSerializer.Serialize(user)
+    );
 
     var claims = userObject
       .Where(kvp => kvp.Key != null && kvp.Value != null)
