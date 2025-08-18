@@ -85,7 +85,7 @@ public class PostCommentService
 
     if (postComment.AuthorUserId != loggedUserId)
     {
-      throw new UnauthorizedAccessException("You are not authorized to update this post comment");
+      throw new UnauthorizedException("You are not authorized to update this post comment");
     }
 
     postComment = PostCommentUpdateParameter.ToModel(postComment, parameter);
@@ -108,7 +108,7 @@ public class PostCommentService
 
     if (postComment.AuthorUserId != loggedUserId)
     {
-      throw new UnauthorizedAccessException("You are not authorized to delete this post comment");
+      throw new UnauthorizedException("You are not authorized to delete this post comment");
     }
 
     await _postCommentStoreRepository.Delete(postComment);

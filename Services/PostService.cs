@@ -72,7 +72,7 @@ public class PostService
 
     if (post.AuthorUserId != loggedUserId)
     {
-      throw new UnauthorizedAccessException("You are not authorized to update this post");
+      throw new UnauthorizedException("You are not authorized to update this post");
     }
 
     post = PostUpdateParameter.ToModel(post, parameter);
@@ -95,7 +95,7 @@ public class PostService
 
     if (post.AuthorUserId != loggedUserId)
     {
-      throw new UnauthorizedAccessException("You are not authorized to delete this post");
+      throw new UnauthorizedException("You are not authorized to delete this post");
     }
 
     await _postStoreRepository.Delete(post);

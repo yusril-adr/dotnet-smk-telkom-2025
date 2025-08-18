@@ -22,11 +22,15 @@ public class PostCommentController : ControllerBase
 
   public PostCommentController(
     ILogger<PostCommentController> logger,
-    PostCommentService postCommentService
+    PostCommentService postCommentService,
+    AuthUtil authUtil,
+    IHttpContextAccessor httpContextAccessor
   )
   {
     _logger = logger;
     _postCommentService = postCommentService;
+    _authUtil = authUtil;
+    _httpContextAccessor = httpContextAccessor;
   }
 
   [HttpGet]
