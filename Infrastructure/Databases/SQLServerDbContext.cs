@@ -24,8 +24,8 @@ public class SQLServerDBContext(
       .IsUnique();
 
     /* Case:
-      When a Post is deleted → all its comments are deleted.
       When a User is deleted → all comments of that user must be deleted first.
+      When a Post is deleted → all its comments are deleted.
     */
     modelBuilder.Entity<PostComment>()
         .HasOne(pc => pc.AuthorUser) // Author
@@ -38,7 +38,6 @@ public class SQLServerDBContext(
         .WithMany(p => p.Comments)
         .HasForeignKey(pc => pc.PostId)
         .OnDelete(DeleteBehavior.Cascade); // only allow cascade from Post
-
   }
 
   public override int SaveChanges()
