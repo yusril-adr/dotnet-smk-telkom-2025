@@ -3,6 +3,7 @@ using dotnet_smk_telkom_2025.Dtos.Results;
 using dotnet_smk_telkom_2025.Infrastructure.Dtos;
 using dotnet_smk_telkom_2025.Infrastructure.Shared;
 using dotnet_smk_telkom_2025.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_smk_telkom_2025.Controllers;
@@ -33,6 +34,7 @@ public class AuthController : ControllerBase
   }
 
   [HttpPost("login/password")]
+  [AllowAnonymous]
   public async Task<ApiResponse> Login(
     [FromBody] AuthLoginParameter parameter
   )

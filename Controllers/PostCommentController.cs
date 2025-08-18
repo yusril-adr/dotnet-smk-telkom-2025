@@ -4,6 +4,7 @@ using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Dtos.Results;
 using dotnet_smk_telkom_2025.Infrastructure.Dtos;
 using dotnet_smk_telkom_2025.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet_smk_telkom_2025.Controllers;
@@ -25,6 +26,7 @@ public class PostCommentController : ControllerBase
   }
 
   [HttpGet]
+  [AllowAnonymous]
   public async Task<ApiResponse> GetAll()
   {
     var results = await _postCommentService.GetAll();
@@ -32,6 +34,7 @@ public class PostCommentController : ControllerBase
   }
 
   [HttpGet("{id}")]
+  [AllowAnonymous]
   public async Task<ApiResponse> FindOneById(Guid id)
   {
     var result = await _postCommentService.FindOneById(id);
