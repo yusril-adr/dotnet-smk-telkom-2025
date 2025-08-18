@@ -34,7 +34,7 @@ builder.Services.AddScoped<PostService>();
 builder.Services.AddScoped<PostCommentService>();
 
 /* ---------------------------------- Utils --------------------------------- */
-builder.Services.AddScoped<AuthUtil>();
+builder.Services.AddSingleton<AuthUtil>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -50,6 +50,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseMiddleware<ExceptionHandler>();
+
 app.UseHttpsRedirection();
 
 app.MapControllers();
