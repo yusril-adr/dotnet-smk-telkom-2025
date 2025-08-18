@@ -8,18 +8,16 @@ public class PostCommentCreateParameter
   [Required]
   public string Content { get; set; }
 
-  [Required]
-  public Guid AuthorUserId { get; set; }
 
   [Required]
   public Guid PostId { get; set; }
 
-  public static PostComment ToModel(PostCommentCreateParameter parameter)
+  public static PostComment ToModel(PostCommentCreateParameter parameter, Guid userId)
   {
     return new PostComment
     {
       Content = parameter.Content,
-      AuthorUserId = parameter.AuthorUserId,
+      AuthorUserId = userId,
       PostId = parameter.PostId
     };
   }

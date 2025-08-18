@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Dtos.Results;
 using dotnet_smk_telkom_2025.Infrastructure.Dtos;
+using dotnet_smk_telkom_2025.Infrastructure.Shared;
 using dotnet_smk_telkom_2025.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,14 +16,20 @@ public class PostController : ControllerBase
 {
   private readonly ILogger<PostController> _logger;
   private readonly PostService _postService;
+  private readonly AuthUtil _authUtil;
+  private readonly IHttpContextAccessor _httpContextAccessor;
 
   public PostController(
     ILogger<PostController> logger,
-    PostService postService
+    PostService postService,
+    AuthUtil authUtil,
+    IHttpContextAccessor httpContextAccessor
   )
   {
     _logger = logger;
     _postService = postService;
+    _authUtil = authUtil;
+    _httpContextAccessor = httpContextAccessor;
   }
 
   [HttpGet]
@@ -46,7 +53,8 @@ public class PostController : ControllerBase
     [FromBody] PostCreateParameter parameter
   )
   {
-    var result = await _postService.Create(parameter);
+    var loggedUserId = _authUtil.GetUserLoggedId(_httpContextAccessor.HttpContext);
+    var result = await _postService.Create(parameter, loggedUserId);
     return new ApiResponseData<PostResult>(result, HttpStatusCode.Created);
   }
 
@@ -56,7 +64,8 @@ public class PostController : ControllerBase
     [FromBody] PostUpdateParameter parameter
   )
   {
-    var result = await _postService.Update(id, parameter);
+    var loggedUserId = _authUtil.GetUserLoggedId(_httpContextAccessor.HttpContext);
+    var result = await _postService.Update(id, parameter, loggedUserId);
     return new ApiResponseData<PostResult>(result);
   }
 
@@ -65,7 +74,9 @@ public class PostController : ControllerBase
     Guid id
   )
   {
-    await _postService.Delete(id);
+    var loggedUserId = _authUtil.GetUserLoggedId(_httpContextAccessor.HttpContext);
+
+    await _postService.Delete(id, loggedUserId);
 
     return new ApiResponseData<PostResult>(null);
   }

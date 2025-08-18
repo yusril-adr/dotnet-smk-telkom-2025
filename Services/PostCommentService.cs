@@ -48,7 +48,8 @@ public class PostCommentService
   }
 
   public async Task<PostCommentResult> Create(
-    PostCommentCreateParameter parameter
+    PostCommentCreateParameter parameter,
+    Guid loggedUserId
   )
   {
     var post = await _postQueryRepository.FindOneById(parameter.PostId);
@@ -57,13 +58,13 @@ public class PostCommentService
       throw new BadParameterException("Post not found");
     }
 
-    var authorUser = await _userQueryRepository.FindOneById(parameter.AuthorUserId);
+    var authorUser = await _userQueryRepository.FindOneById(loggedUserId);
     if (authorUser == null)
     {
       throw new BadParameterException("Author user not found");
     }
 
-    var postComment = PostCommentCreateParameter.ToModel(parameter);
+    var postComment = PostCommentCreateParameter.ToModel(parameter, loggedUserId);
     postComment = await _postCommentStoreRepository.Create(postComment);
 
     var result = new PostCommentResult(postComment);
@@ -72,13 +73,19 @@ public class PostCommentService
 
   public async Task<PostCommentResult> Update(
     Guid id,
-    PostCommentUpdateParameter parameter
+    PostCommentUpdateParameter parameter,
+    Guid loggedUserId
   )
   {
     var postComment = await _postCommentQueryRepository.FindOneById(id);
     if (postComment == null)
     {
       throw new NotFoundException("Post Comment not found");
+    }
+
+    if (postComment.AuthorUserId != loggedUserId)
+    {
+      throw new UnauthorizedAccessException("You are not authorized to update this post comment");
     }
 
     postComment = PostCommentUpdateParameter.ToModel(postComment, parameter);
@@ -89,13 +96,19 @@ public class PostCommentService
   }
 
   public async Task Delete(
-    Guid id
+    Guid id,
+    Guid loggedUserId
   )
   {
     var postComment = await _postCommentQueryRepository.FindOneById(id);
     if (postComment == null)
     {
       throw new NotFoundException("Post Comment not found");
+    }
+
+    if (postComment.AuthorUserId != loggedUserId)
+    {
+      throw new UnauthorizedAccessException("You are not authorized to delete this post comment");
     }
 
     await _postCommentStoreRepository.Delete(postComment);

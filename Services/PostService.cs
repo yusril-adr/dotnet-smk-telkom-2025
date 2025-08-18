@@ -41,16 +41,17 @@ public class PostService
   }
 
   public async Task<PostResult> Create(
-    PostCreateParameter parameter
+    PostCreateParameter parameter,
+    Guid loggedUserId
   )
   {
-    var authorUser = await _userQueryRepository.FindOneById(parameter.AuthorUserId);
+    var authorUser = await _userQueryRepository.FindOneById(loggedUserId);
     if (authorUser == null)
     {
       throw new BadParameterException("Author user not found");
     }
 
-    var post = PostCreateParameter.ToModel(parameter);
+    var post = PostCreateParameter.ToModel(parameter, loggedUserId);
     post = await _postStoreRepository.Create(post);
 
     var result = new PostResult(post);
@@ -59,13 +60,19 @@ public class PostService
 
   public async Task<PostResult> Update(
     Guid id,
-    PostUpdateParameter parameter
+    PostUpdateParameter parameter,
+    Guid loggedUserId
   )
   {
     var post = await _postQueryRepository.FindOneById(id);
     if (post == null)
     {
       throw new NotFoundException("Post not found");
+    }
+
+    if (post.AuthorUserId != loggedUserId)
+    {
+      throw new UnauthorizedAccessException("You are not authorized to update this post");
     }
 
     post = PostUpdateParameter.ToModel(post, parameter);
@@ -76,13 +83,19 @@ public class PostService
   }
 
   public async Task Delete(
-    Guid id
+    Guid id,
+    Guid loggedUserId
   )
   {
     var post = await _postQueryRepository.FindOneById(id);
     if (post == null)
     {
       throw new NotFoundException("Post not found");
+    }
+
+    if (post.AuthorUserId != loggedUserId)
+    {
+      throw new UnauthorizedAccessException("You are not authorized to delete this post");
     }
 
     await _postStoreRepository.Delete(post);

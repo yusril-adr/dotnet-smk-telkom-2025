@@ -11,16 +11,13 @@ public class PostCreateParameter
   [Required]
   public string Content { get; set; }
 
-  [Required]
-  public Guid AuthorUserId { get; set; }
-
-  public static Post ToModel(PostCreateParameter parameter)
+  public static Post ToModel(PostCreateParameter parameter, Guid userId)
   {
     return new Post
     {
       Title = parameter.Title,
       Content = parameter.Content,
-      AuthorUserId = parameter.AuthorUserId
+      AuthorUserId = userId
     };
   }
 }

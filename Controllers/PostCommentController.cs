@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Dtos.Results;
 using dotnet_smk_telkom_2025.Infrastructure.Dtos;
+using dotnet_smk_telkom_2025.Infrastructure.Shared;
 using dotnet_smk_telkom_2025.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,9 @@ public class PostCommentController : ControllerBase
 {
   private readonly ILogger<PostCommentController> _logger;
   private readonly PostCommentService _postCommentService;
+  private readonly AuthUtil _authUtil;
+  private readonly IHttpContextAccessor _httpContextAccessor;
+
 
   public PostCommentController(
     ILogger<PostCommentController> logger,
@@ -46,7 +50,8 @@ public class PostCommentController : ControllerBase
     [FromBody] PostCommentCreateParameter parameter
   )
   {
-    var result = await _postCommentService.Create(parameter);
+    var loggedUserId = _authUtil.GetUserLoggedId(_httpContextAccessor.HttpContext);
+    var result = await _postCommentService.Create(parameter, loggedUserId);
     return new ApiResponseData<PostCommentResult>(result, HttpStatusCode.Created);
   }
 
@@ -56,7 +61,8 @@ public class PostCommentController : ControllerBase
     [FromBody] PostCommentUpdateParameter parameter
   )
   {
-    var result = await _postCommentService.Update(id, parameter);
+    var loggedUserId = _authUtil.GetUserLoggedId(_httpContextAccessor.HttpContext);
+    var result = await _postCommentService.Update(id, parameter, loggedUserId);
     return new ApiResponseData<PostCommentResult>(result);
   }
 
@@ -65,7 +71,8 @@ public class PostCommentController : ControllerBase
     Guid id
   )
   {
-    await _postCommentService.Delete(id);
+    var loggedUserId = _authUtil.GetUserLoggedId(_httpContextAccessor.HttpContext);
+    await _postCommentService.Delete(id, loggedUserId);
 
     return new ApiResponseData<PostCommentResult>(null);
   }
