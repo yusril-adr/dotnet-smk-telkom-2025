@@ -109,6 +109,13 @@ public class AuthUtil(
     }
   }
 
+  public Guid GetUserLoggedId(HttpContext context)
+  {
+    var token = GetToken(context);
+    var user = GetUserLogged<UserResult>(token);
+    return user.Id;
+  }
+
   public JwtSecurityToken ValidateJwtToken(string tokenString, string secret)
   {
     try
