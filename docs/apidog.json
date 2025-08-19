@@ -576,7 +576,68 @@
                 "path": "/users",
                 "parameters": {
                   "path": [],
-                  "query": [],
+                  "query": [
+                    {
+                      "id": "zvP7i8YSQ7",
+                      "name": "Search",
+                      "required": false,
+                      "description": "Search term to filter users",
+                      "type": "string",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "id": "Sx49iiRd8A",
+                      "name": "PerPage",
+                      "required": false,
+                      "description": "Number of items per page",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "default": 10
+                      }
+                    },
+                    {
+                      "id": "KI1h4NlOXb",
+                      "name": "Page",
+                      "required": false,
+                      "description": "Page number",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "default": 1
+                      }
+                    },
+                    {
+                      "id": "LIjgVPFH7x",
+                      "name": "SortBy",
+                      "required": false,
+                      "description": "Field to sort by",
+                      "type": "string",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "id": "saEq5MMDZa",
+                      "name": "Order",
+                      "required": false,
+                      "description": "Sort order",
+                      "type": "string",
+                      "schema": {
+                        "type": "string",
+                        "enum": [
+                          "Asc",
+                          "Desc"
+                        ],
+                        "default": "Desc"
+                      }
+                    }
+                  ],
                   "cookie": [],
                   "header": []
                 },
@@ -590,7 +651,7 @@
                     "name": "OK",
                     "headers": [],
                     "jsonSchema": {
-                      "$ref": "#/definitions/8665486"
+                      "$ref": "#/definitions/8807129"
                     },
                     "description": "Successful response",
                     "contentType": "json",
@@ -606,7 +667,7 @@
                   "additionalContentTypes": [],
                   "oasExtensions": ""
                 },
-                "description": "Retrieves a list of all users",
+                "description": "Retrieves a paginated list of all users",
                 "tags": [
                   "Users"
                 ],
@@ -1105,7 +1166,79 @@
                 "path": "/posts",
                 "parameters": {
                   "path": [],
-                  "query": [],
+                  "query": [
+                    {
+                      "id": "n0Icsquflf",
+                      "name": "Search",
+                      "required": false,
+                      "description": "Search term to filter posts",
+                      "type": "string",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "id": "vJNjP2nQk0",
+                      "name": "PerPage",
+                      "required": false,
+                      "description": "Number of items per page",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "default": 10
+                      }
+                    },
+                    {
+                      "id": "BdBFmnhJd4",
+                      "name": "Page",
+                      "required": false,
+                      "description": "Page number",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "default": 1
+                      }
+                    },
+                    {
+                      "id": "6w62EDFTG8",
+                      "name": "SortBy",
+                      "required": false,
+                      "description": "Field to sort by",
+                      "type": "string",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "id": "oWj3Uo87WH",
+                      "name": "Order",
+                      "required": false,
+                      "description": "Sort order",
+                      "type": "string",
+                      "schema": {
+                        "type": "string",
+                        "enum": [
+                          "Asc",
+                          "Desc"
+                        ],
+                        "default": "Desc"
+                      }
+                    },
+                    {
+                      "id": "uE1nrK1QRM",
+                      "name": "AuthorUserId",
+                      "required": false,
+                      "description": "Filter posts by author user ID",
+                      "type": "string",
+                      "schema": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    }
+                  ],
                   "cookie": [],
                   "header": []
                 },
@@ -1119,7 +1252,7 @@
                     "name": "OK",
                     "headers": [],
                     "jsonSchema": {
-                      "$ref": "#/definitions/8706200"
+                      "$ref": "#/definitions/8807130"
                     },
                     "description": "Successful response",
                     "contentType": "json",
@@ -1135,7 +1268,7 @@
                   "additionalContentTypes": [],
                   "oasExtensions": ""
                 },
-                "description": "Retrieves a list of all posts",
+                "description": "Retrieves a paginated list of all posts",
                 "tags": [
                   "Posts"
                 ],
@@ -1630,7 +1763,90 @@
                 "path": "/posts/comments",
                 "parameters": {
                   "path": [],
-                  "query": [],
+                  "query": [
+                    {
+                      "id": "IERIlFMekl",
+                      "name": "Search",
+                      "required": false,
+                      "description": "Search term to filter post comments",
+                      "type": "string",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "id": "IZOMtq0Gmv",
+                      "name": "PerPage",
+                      "required": false,
+                      "description": "Number of items per page",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 100,
+                        "default": 10
+                      }
+                    },
+                    {
+                      "id": "KtDpqQB28B",
+                      "name": "Page",
+                      "required": false,
+                      "description": "Page number",
+                      "type": "integer",
+                      "schema": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "default": 1
+                      }
+                    },
+                    {
+                      "id": "iZmyhiU46N",
+                      "name": "SortBy",
+                      "required": false,
+                      "description": "Field to sort by",
+                      "type": "string",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "id": "wK3uTNu4V1",
+                      "name": "Order",
+                      "required": false,
+                      "description": "Sort order",
+                      "type": "string",
+                      "schema": {
+                        "type": "string",
+                        "enum": [
+                          "Asc",
+                          "Desc"
+                        ],
+                        "default": "Desc"
+                      }
+                    },
+                    {
+                      "id": "FJxJtsxhhk",
+                      "name": "PostId",
+                      "required": false,
+                      "description": "Filter comments by post ID",
+                      "type": "string",
+                      "schema": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    },
+                    {
+                      "id": "W31oKXBbSz",
+                      "name": "AuthorUserId",
+                      "required": false,
+                      "description": "Filter comments by author user ID",
+                      "type": "string",
+                      "schema": {
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                    }
+                  ],
                   "cookie": [],
                   "header": []
                 },
@@ -1644,7 +1860,7 @@
                     "name": "OK",
                     "headers": [],
                     "jsonSchema": {
-                      "$ref": "#/definitions/8706205"
+                      "$ref": "#/definitions/8807131"
                     },
                     "description": "Successful response",
                     "contentType": "json",
@@ -1660,7 +1876,7 @@
                   "additionalContentTypes": [],
                   "oasExtensions": ""
                 },
-                "description": "Retrieves a list of all post comments",
+                "description": "Retrieves a paginated list of all post comments",
                 "tags": [
                   "PostComments"
                 ],
@@ -2557,8 +2773,8 @@
                     "authorUser": {
                       "oneOf": [
                         {
-                          "type": "object",
-                          "properties": {}
+                          "$ref": "#/definitions/8665484",
+                          "description": "Author user information (nullable)"
                         },
                         {
                           "type": "null"
@@ -2610,6 +2826,49 @@
                   "x-apidog-orders": [
                     "email",
                     "password"
+                  ]
+                }
+              },
+              "visibility": "INHERITED",
+              "moduleId": 847686
+            },
+            {
+              "name": "PaginationMeta",
+              "displayName": "",
+              "id": "#/definitions/8807128",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "TotalPage": {
+                      "type": "integer",
+                      "description": "Total number of pages"
+                    },
+                    "Total": {
+                      "type": "integer",
+                      "description": "Total number of items"
+                    },
+                    "Page": {
+                      "type": "integer",
+                      "description": "Current page number"
+                    },
+                    "PerPage": {
+                      "type": "integer",
+                      "description": "Number of items per page"
+                    }
+                  },
+                  "required": [
+                    "TotalPage",
+                    "Total",
+                    "Page",
+                    "PerPage"
+                  ],
+                  "x-apidog-orders": [
+                    "TotalPage",
+                    "Total",
+                    "Page",
+                    "PerPage"
                   ]
                 }
               },
@@ -2764,6 +3023,64 @@
               "moduleId": 847686
             },
             {
+              "name": "ApiResponsePaginationUser",
+              "displayName": "",
+              "id": "#/definitions/8807129",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "StatusCode": {
+                      "type": "integer",
+                      "description": "HTTP status code"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/8665484"
+                          }
+                        },
+                        "meta": {
+                          "$ref": "#/definitions/8807128"
+                        }
+                      },
+                      "required": [
+                        "items",
+                        "meta"
+                      ],
+                      "x-apidog-orders": [
+                        "items",
+                        "meta"
+                      ]
+                    },
+                    "Version": {
+                      "type": "string",
+                      "description": "API version",
+                      "examples": [
+                        "1.0.0"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "StatusCode",
+                    "data",
+                    "Version"
+                  ],
+                  "x-apidog-orders": [
+                    "StatusCode",
+                    "data",
+                    "Version"
+                  ]
+                }
+              },
+              "visibility": "INHERITED",
+              "moduleId": 847686
+            },
+            {
               "name": "Question3Request",
               "displayName": "",
               "id": "#/definitions/8625581",
@@ -2838,6 +3155,64 @@
                     },
                     "data": {
                       "$ref": "#/definitions/8765685"
+                    },
+                    "Version": {
+                      "type": "string",
+                      "description": "API version",
+                      "examples": [
+                        "1.0.0"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "StatusCode",
+                    "data",
+                    "Version"
+                  ],
+                  "x-apidog-orders": [
+                    "StatusCode",
+                    "data",
+                    "Version"
+                  ]
+                }
+              },
+              "visibility": "INHERITED",
+              "moduleId": 847686
+            },
+            {
+              "name": "ApiResponsePaginationPost",
+              "displayName": "",
+              "id": "#/definitions/8807130",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "StatusCode": {
+                      "type": "integer",
+                      "description": "HTTP status code"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/8706196"
+                          }
+                        },
+                        "meta": {
+                          "$ref": "#/definitions/8807128"
+                        }
+                      },
+                      "required": [
+                        "items",
+                        "meta"
+                      ],
+                      "x-apidog-orders": [
+                        "items",
+                        "meta"
+                      ]
                     },
                     "Version": {
                       "type": "string",
@@ -2953,6 +3328,64 @@
                     },
                     "data": {
                       "$ref": "#/definitions/8706196"
+                    },
+                    "Version": {
+                      "type": "string",
+                      "description": "API version",
+                      "examples": [
+                        "1.0.0"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "StatusCode",
+                    "data",
+                    "Version"
+                  ],
+                  "x-apidog-orders": [
+                    "StatusCode",
+                    "data",
+                    "Version"
+                  ]
+                }
+              },
+              "visibility": "INHERITED",
+              "moduleId": 847686
+            },
+            {
+              "name": "ApiResponsePaginationPostComment",
+              "displayName": "",
+              "id": "#/definitions/8807131",
+              "description": "",
+              "schema": {
+                "jsonSchema": {
+                  "type": "object",
+                  "properties": {
+                    "StatusCode": {
+                      "type": "integer",
+                      "description": "HTTP status code"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/8706201"
+                          }
+                        },
+                        "meta": {
+                          "$ref": "#/definitions/8807128"
+                        }
+                      },
+                      "required": [
+                        "items",
+                        "meta"
+                      ],
+                      "x-apidog-orders": [
+                        "items",
+                        "meta"
+                      ]
                     },
                     "Version": {
                       "type": "string",
@@ -3232,8 +3665,8 @@
                     "authorUser": {
                       "oneOf": [
                         {
-                          "type": "object",
-                          "properties": {}
+                          "$ref": "#/definitions/8665484",
+                          "description": "Author user information (nullable)"
                         },
                         {
                           "type": "null"

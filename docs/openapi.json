@@ -20,14 +20,68 @@
       "get": {
         "tags": ["Users"],
         "summary": "Get all users",
-        "description": "Retrieves a list of all users",
+        "description": "Retrieves a paginated list of all users",
+        "parameters": [
+          {
+            "name": "Search",
+            "in": "query",
+            "required": false,
+            "description": "Search term to filter users",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PerPage",
+            "in": "query",
+            "required": false,
+            "description": "Number of items per page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "required": false,
+            "description": "Page number",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "SortBy",
+            "in": "query",
+            "required": false,
+            "description": "Field to sort by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Order",
+            "in": "query",
+            "required": false,
+            "description": "Sort order",
+            "schema": {
+              "type": "string",
+              "enum": ["Asc", "Desc"],
+              "default": "Desc"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiResponseListUser"
+                  "$ref": "#/components/schemas/ApiResponsePaginationUser"
                 }
               }
             }
@@ -421,14 +475,78 @@
       "get": {
         "tags": ["Posts"],
         "summary": "Get all posts",
-        "description": "Retrieves a list of all posts",
+        "description": "Retrieves a paginated list of all posts",
+        "parameters": [
+          {
+            "name": "Search",
+            "in": "query",
+            "required": false,
+            "description": "Search term to filter posts",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PerPage",
+            "in": "query",
+            "required": false,
+            "description": "Number of items per page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "required": false,
+            "description": "Page number",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "SortBy",
+            "in": "query",
+            "required": false,
+            "description": "Field to sort by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Order",
+            "in": "query",
+            "required": false,
+            "description": "Sort order",
+            "schema": {
+              "type": "string",
+              "enum": ["Asc", "Desc"],
+              "default": "Desc"
+            }
+          },
+          {
+            "name": "AuthorUserId",
+            "in": "query",
+            "required": false,
+            "description": "Filter posts by author user ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiResponseListPost"
+                  "$ref": "#/components/schemas/ApiResponsePaginationPost"
                 }
               }
             }
@@ -634,14 +752,88 @@
       "get": {
         "tags": ["PostComments"],
         "summary": "Get all post comments",
-        "description": "Retrieves a list of all post comments",
+        "description": "Retrieves a paginated list of all post comments",
+        "parameters": [
+          {
+            "name": "Search",
+            "in": "query",
+            "required": false,
+            "description": "Search term to filter post comments",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PerPage",
+            "in": "query",
+            "required": false,
+            "description": "Number of items per page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10
+            }
+          },
+          {
+            "name": "Page",
+            "in": "query",
+            "required": false,
+            "description": "Page number",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "SortBy",
+            "in": "query",
+            "required": false,
+            "description": "Field to sort by",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Order",
+            "in": "query",
+            "required": false,
+            "description": "Sort order",
+            "schema": {
+              "type": "string",
+              "enum": ["Asc", "Desc"],
+              "default": "Desc"
+            }
+          },
+          {
+            "name": "PostId",
+            "in": "query",
+            "required": false,
+            "description": "Filter comments by post ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "AuthorUserId",
+            "in": "query",
+            "required": false,
+            "description": "Filter comments by author user ID",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApiResponseListPostComment"
+                  "$ref": "#/components/schemas/ApiResponsePaginationPostComment"
                 }
               }
             }
@@ -1137,6 +1329,58 @@
         },
         "required": ["StatusCode", "data", "Version"]
       },
+      "PaginationMeta": {
+        "type": "object",
+        "properties": {
+          "TotalPage": {
+            "type": "integer",
+            "description": "Total number of pages"
+          },
+          "Total": {
+            "type": "integer",
+            "description": "Total number of items"
+          },
+          "Page": {
+            "type": "integer",
+            "description": "Current page number"
+          },
+          "PerPage": {
+            "type": "integer",
+            "description": "Number of items per page"
+          }
+        },
+        "required": ["TotalPage", "Total", "Page", "PerPage"]
+      },
+      "ApiResponsePaginationUser": {
+        "type": "object",
+        "properties": {
+          "StatusCode": {
+            "type": "integer",
+            "description": "HTTP status code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UserResult"
+                }
+              },
+              "meta": {
+                "$ref": "#/components/schemas/PaginationMeta"
+              }
+            },
+            "required": ["items", "meta"]
+          },
+          "Version": {
+            "type": "string",
+            "description": "API version",
+            "example": "1.0.0"
+          }
+        },
+        "required": ["StatusCode", "data", "Version"]
+      },
       "ApiResponseListUser": {
         "type": "object",
         "properties": {
@@ -1239,6 +1483,36 @@
           },
           "data": {
             "$ref": "#/components/schemas/PostResult"
+          },
+          "Version": {
+            "type": "string",
+            "description": "API version",
+            "example": "1.0.0"
+          }
+        },
+        "required": ["StatusCode", "data", "Version"]
+      },
+      "ApiResponsePaginationPost": {
+        "type": "object",
+        "properties": {
+          "StatusCode": {
+            "type": "integer",
+            "description": "HTTP status code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PostResult"
+                }
+              },
+              "meta": {
+                "$ref": "#/components/schemas/PaginationMeta"
+              }
+            },
+            "required": ["items", "meta"]
           },
           "Version": {
             "type": "string",
@@ -1353,6 +1627,36 @@
           },
           "data": {
             "$ref": "#/components/schemas/PostCommentResult"
+          },
+          "Version": {
+            "type": "string",
+            "description": "API version",
+            "example": "1.0.0"
+          }
+        },
+        "required": ["StatusCode", "data", "Version"]
+      },
+      "ApiResponsePaginationPostComment": {
+        "type": "object",
+        "properties": {
+          "StatusCode": {
+            "type": "integer",
+            "description": "HTTP status code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PostCommentResult"
+                }
+              },
+              "meta": {
+                "$ref": "#/components/schemas/PaginationMeta"
+              }
+            },
+            "required": ["items", "meta"]
           },
           "Version": {
             "type": "string",
