@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Dtos.Results;
+using dotnet_smk_telkom_2025.Infrastructure.Dtos;
 using dotnet_smk_telkom_2025.Infrastructure.Exceptions;
 using dotnet_smk_telkom_2025.Repositories;
 
@@ -27,6 +28,15 @@ public class PostCommentService
 
     _postQueryRepository = postQueryRepository;
     _userQueryRepository = userQueryRepository;
+  }
+
+  public async Task<PaginationResult<PostCommentResult>> Pagination(
+    PostCommentQueryParameter parameter
+  )
+  {
+    var (postComments, postCommentsCount) = await _postCommentQueryRepository.FindAllPaginated(parameter);
+    var results = PostCommentResult.MapModels(postComments);
+    return PaginationResult<PostCommentResult>.Parse(results, postCommentsCount, parameter);
   }
 
   public async Task<List<PostCommentResult>> GetAll()

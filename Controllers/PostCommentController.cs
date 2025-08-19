@@ -35,10 +35,12 @@ public class PostCommentController : ControllerBase
 
   [HttpGet]
   [AllowAnonymous]
-  public async Task<ApiResponse> GetAll()
+  public async Task<ApiResponse> Pagination(
+    [FromQuery] PostCommentQueryParameter parameter
+  )
   {
-    var results = await _postCommentService.GetAll();
-    return new ApiResponseList<PostCommentResult>(results);
+    var results = await _postCommentService.Pagination(parameter);
+    return new ApiResponsePagination<PostCommentResult>(results);
   }
 
   [HttpGet("{id}")]
