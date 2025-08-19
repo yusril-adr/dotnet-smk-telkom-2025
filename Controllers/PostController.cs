@@ -1,6 +1,4 @@
 using System.Net;
-using System.Text.Json;
-using System.Threading.Tasks;
 using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Dtos.Results;
 using dotnet_smk_telkom_2025.Infrastructure.Dtos;
@@ -40,7 +38,6 @@ public class PostController : ControllerBase
   )
   {
     var results = await _postService.Pagination(parameter);
-    Console.WriteLine(JsonSerializer.Serialize(results));
     return new ApiResponsePagination<PostResult>(results);
   }
 
