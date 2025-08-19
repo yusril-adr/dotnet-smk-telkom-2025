@@ -22,6 +22,15 @@ public class PostService
     _userQueryRepository = userQueryRepository;
   }
 
+  public async Task<List<PostResult>> Pagination(
+    PostQueryParameter parameter
+  )
+  {
+    var (posts, _) = await _postQueryRepository.FindAllPaginated(parameter);
+    var results = PostResult.MapModels(posts);
+    return results;
+  }
+
   public async Task<List<PostResult>> GetAll()
   {
     var posts = await _postQueryRepository.FindAll();

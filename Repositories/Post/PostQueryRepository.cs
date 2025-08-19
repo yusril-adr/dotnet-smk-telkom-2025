@@ -1,3 +1,4 @@
+using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Infrastructure.Databases;
 using dotnet_smk_telkom_2025.Models;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,21 @@ public class PostQueryRepository
   )
   {
     SQLServerDb = sqlServerDb;
+  }
+
+  public async Task<(List<Post> posts, int totalCount)> FindAllPaginated(
+    PostQueryParameter parameter
+  )
+  {
+    var query = SQLServerDb.Posts.AsQueryable();
+
+    int skip = (parameter.Page - 1) * parameter.PerPage;
+    var posts = await query
+      .Skip(skip)
+      .Take(parameter.PerPage)
+      .ToListAsync();
+    var totalCount = await query.CountAsync();
+    return (posts, totalCount);
   }
 
   public async Task<List<Post>> FindAll()

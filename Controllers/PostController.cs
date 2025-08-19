@@ -34,9 +34,11 @@ public class PostController : ControllerBase
 
   [HttpGet]
   [AllowAnonymous]
-  public async Task<ApiResponse> GetAll()
+  public async Task<ApiResponse> Pagination(
+    [FromQuery] PostQueryParameter parameter
+  )
   {
-    var results = await _postService.GetAll();
+    var results = await _postService.Pagination(parameter);
     return new ApiResponseList<PostResult>(results);
   }
 
