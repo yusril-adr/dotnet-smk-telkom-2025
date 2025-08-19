@@ -26,10 +26,12 @@ public class UserController : ControllerBase
 
   [HttpGet]
   [AllowAnonymous]
-  public async Task<ApiResponse> GetAll()
+  public async Task<ApiResponse> Pagination(
+    [FromQuery] UserQueryParameter parameter
+  )
   {
-    var results = await _userService.GetAll();
-    return new ApiResponseList<UserResult>(results);
+    var results = await _userService.Pagination(parameter);
+    return new ApiResponsePagination<UserResult>(results);
   }
 
   [HttpGet("{id}")]
