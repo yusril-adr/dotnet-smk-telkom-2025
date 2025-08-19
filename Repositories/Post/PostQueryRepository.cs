@@ -23,12 +23,46 @@ public class PostQueryRepository
     var query = SQLServerDb.Posts.AsQueryable();
 
     int skip = (parameter.Page - 1) * parameter.PerPage;
+
+    query = QuerySearch(query, parameter);
+    query = QueryFilter(query, parameter);
+
     var posts = await query
       .Skip(skip)
       .Take(parameter.PerPage)
       .ToListAsync();
     var totalCount = await query.CountAsync();
     return (posts, totalCount);
+  }
+
+  private IQueryable<Post> QuerySearch(
+    IQueryable<Post> query,
+    PostQueryParameter parameter
+  )
+  {
+    if (!string.IsNullOrEmpty(parameter.Search))
+    {
+      query = query.Where(
+        data =>
+          EF.Functions.Like(data.Title, $"%{parameter.Search}%")
+          || EF.Functions.Like(data.Content, $"%{parameter.Search}%")
+        );
+    }
+
+    return query;
+  }
+
+  private IQueryable<Post> QueryFilter(
+    IQueryable<Post> query,
+    PostQueryParameter parameter
+  )
+  {
+    if (parameter.AuthorUserId != Guid.Empty)
+    {
+      query = query.Where(data => data.AuthorUserId == parameter.AuthorUserId);
+    }
+
+    return query;
   }
 
   public async Task<List<Post>> FindAll()

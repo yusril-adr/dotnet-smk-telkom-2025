@@ -4,4 +4,5 @@ namespace dotnet_smk_telkom_2025.Dtos.Parameters;
 
 public class PostQueryParameter : QueryParameter
 {
+  public Guid AuthorUserId { get; set; }
 }

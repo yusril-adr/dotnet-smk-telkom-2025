@@ -10,6 +10,8 @@ public class QueryParameter
     Page = 1;
   }
 
+  public string Search { get; set; }
+
   [Range(1, 100)]
   public int PerPage { get; set; }
 
