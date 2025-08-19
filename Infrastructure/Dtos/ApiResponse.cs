@@ -49,3 +49,34 @@ public class ApiResponseList<T> : ApiResponse
     MapValue(new { items, meta });
   }
 }
+
+public class ResponsePagination<T>
+{
+  public List<T> Items { get; set; }
+
+  public PaginationMeta Meta { get; set; }
+
+  public ResponsePagination(PaginationResult<T> paginationModel)
+  {
+    Items = paginationModel.Items;
+    Meta = paginationModel.Meta;
+  }
+}
+
+public class ApiResponsePagination<T> : ApiResponse
+{
+  public ResponsePagination<T> Data { get; set; }
+
+  public ApiResponsePagination(
+    PaginationResult<T> data,
+    HttpStatusCode statusCode = HttpStatusCode.OK,
+    string version = "1.0.0"
+  )
+  {
+    Data = new ResponsePagination<T>(data);
+    StatusCode = (int)statusCode;
+    Version = version;
+
+    MapValue(Data);
+  }
+}

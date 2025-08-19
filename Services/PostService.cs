@@ -1,5 +1,6 @@
 using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Dtos.Results;
+using dotnet_smk_telkom_2025.Infrastructure.Dtos;
 using dotnet_smk_telkom_2025.Infrastructure.Exceptions;
 using dotnet_smk_telkom_2025.Repositories;
 
@@ -22,13 +23,13 @@ public class PostService
     _userQueryRepository = userQueryRepository;
   }
 
-  public async Task<List<PostResult>> Pagination(
+  public async Task<PaginationResult<PostResult>> Pagination(
     PostQueryParameter parameter
   )
   {
-    var (posts, _) = await _postQueryRepository.FindAllPaginated(parameter);
+    var (posts, postsCount) = await _postQueryRepository.FindAllPaginated(parameter);
     var results = PostResult.MapModels(posts);
-    return results;
+    return PaginationResult<PostResult>.Parse(results, postsCount, parameter);
   }
 
   public async Task<List<PostResult>> GetAll()
