@@ -1,5 +1,8 @@
+using System.Linq.Expressions;
 using dotnet_smk_telkom_2025.Dtos.Parameters;
 using dotnet_smk_telkom_2025.Infrastructure.Databases;
+using dotnet_smk_telkom_2025.Infrastructure.Dtos;
+using dotnet_smk_telkom_2025.Infrastructure.Exceptions;
 using dotnet_smk_telkom_2025.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,6 +29,7 @@ public class PostQueryRepository
 
     query = QuerySearch(query, parameter);
     query = QueryFilter(query, parameter);
+    query = QuerySort(query, parameter);
 
     var posts = await query
       .Skip(skip)
@@ -61,6 +65,38 @@ public class PostQueryRepository
     {
       query = query.Where(data => data.AuthorUserId == parameter.AuthorUserId);
     }
+
+    return query;
+  }
+
+  private IQueryable<Post> QuerySort(
+    IQueryable<Post> query,
+    PostQueryParameter parameter
+  )
+  {
+    if (string.IsNullOrEmpty(parameter.SortBy))
+    {
+      parameter.SortBy = "updated_at";
+    }
+
+    Dictionary<string, Expression<Func<Post, object>>> sortFunctions = new()
+    {
+      { "updated_at", data => data.UpdatedAt },
+      { "created_at", data => data.UpdatedAt },
+      { "title", data => data.Title },
+      { "content", data => data.Content },
+    };
+
+    if (!sortFunctions.TryGetValue(parameter.SortBy, out Expression<Func<Post, object>> value))
+    {
+      throw new BadParameterException(
+        $"Invalid sort column: {parameter.SortBy}, available sort columns: " + string.Join(", ", sortFunctions.Keys)
+      );
+    }
+
+    query = parameter.Order == SortOrder.Asc
+        ? query.OrderBy(value)
+        : query.OrderByDescending(value);
 
     return query;
   }
